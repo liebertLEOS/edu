@@ -109,7 +109,7 @@ return array(
                 array(
                     'id'       => '11',
                     'title'    => '查看课程',
-                    'url'      => '',
+                    'url'      => 'Admin/Course/index',
                     'icon'     => 'circle-o',
                     'path'     => '10,11',
                     'children' => null
