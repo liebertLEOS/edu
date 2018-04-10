@@ -1,0 +1,110 @@
+<extend name="Common:layout-admin"/>
+
+<block name="content">
+
+  <!-- content-header start -->
+  <section class="content-header">
+    <h1>课程设置<small></small>
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="{:U('Admin/Index/index')}"><i class="fa fa-home"></i> 后台首页</a></li>
+      <li class="active"><i class="fa fa-golbe"></i> 课程设置</li>
+    </ol>
+  </section>
+  <!-- content-header end -->
+
+  <section class="content">
+    <div class="nav-tabs-custom">
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#tab_1" data-toggle="tab">课程</a></li>
+        <li><a href="#tab_2" data-toggle="tab">默认图片</a></li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane active" id="tab_1">
+          <form class="form-horizontal" method="POST">
+            <div class="box-body">
+
+              <div class="form-group">
+                <label for="send" class="col-sm-3 control-label">给新学员发送欢迎私信</label>
+                <div class="col-sm-8 radio">
+                  <label>
+                    <input id="send" name="send"  type="radio" value="1" <eq name="setting.send" value="1">checked="checked"</eq> > 是
+                  </label>
+                  <label>
+                    <input id="send" name="send"  type="radio" value="0" <eq name="setting.send" value="0">checked="checked"</eq>> 否
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-3 control-label">欢迎私信内容</label>
+                <div class="col-sm-8">
+                  <textarea class="form-control" name="welcome" rows="3">{$setting.welcome}</textarea>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-3 control-label">允许教员添加/移除学员</label>
+                <div class="col-sm-8 radio">
+                  <label>
+                    <input name="teacher_manage_student"  type="radio" value="1" <eq name="setting.teacher_manage_student" value="1">checked="checked"</eq> > 是
+                  </label>
+                  <label>
+                    <input name="teacher_manage_student"  type="radio" value="0" <eq name="setting.teacher_manage_student" value="0">checked="checked"</eq>> 否
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-3 control-label">允许学员下载视频</label>
+                <div class="col-sm-8 radio">
+                  <label>
+                    <input name="student_download"  type="radio" value="1" <eq name="setting.student_download" value="1">checked="checked"</eq> > 是
+                  </label>
+                  <label>
+                    <input name="student_download"  type="radio" value="0" <eq name="setting.student_download" value="0">checked="checked"</eq>> 否
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-3 control-label">免费课时允许未登录用户观看</label>
+                <div class="col-sm-8 radio">
+                  <label>
+                    <input name="allow_anonymous_preview"  type="radio" value="1" <eq name="setting.allow_anonymous_preview" value="1">checked="checked"</eq> > 是
+                  </label>
+                  <label>
+                    <input name="allow_anonymous_preview"  type="radio" value="0" <eq name="setting.allow_anonymous_preview" value="0">checked="checked"</eq>> 否
+                  </label>
+                </div>
+              </div>
+
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+              <button type="submit" class="btn btn-flat btn-warning col-sm-offset-3"><i class="fa fa-check"></i> 确认</button>
+            </div>
+            <!-- /.box-footer -->
+          </form>
+
+        </div>
+        <!-- /.tab-pane -->
+
+        <div class="tab-pane" id="tab_2">
+
+        </div>
+        <!-- /.tab-pane -->
+      </div>
+      <!-- /.tab-content -->
+    </div>
+
+  </section>
+
+</block>
+
+<block name="script">
+  <script type="text/javascript">
+    seajs.use('/Public/js/admin/setting/course.js')
+  </script>
+</block>

@@ -1,0 +1,18 @@
+ul,li{list-style: none;}
+.form{
+	width: 380px;
+	margin: 80px auto;
+}
+.form .panel .panel-body{
+	padding: 30px 40px;
+}
+.mb40{
+	margin-bottom: 20px;
+}
+.skin-yellow-light .pagination > .active > a, .skin-yellow-light .pagination > .active > span, .skin-yellow-light .pagination > .active > a:hover, .skin-yellow-light .pagination > .active > span:hover, .skin-yellow-light .pagination > .active > a:focus, .pagination > .active > span:focus{
+	background-color:#f39c12;
+	border-color: #f39c12;
+}
+.radio label, .checkbox label{
+	padding-right: 25px;
+}

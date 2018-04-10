@@ -1,0 +1,48 @@
+<extend name="Common:layout-admin"/>
+
+<block name="content">
+
+  <!-- content-header start -->
+  <section class="content-header">
+    <h1>用户设置<small></small>
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="{:U('Admin/Index/index')}"><i class="fa fa-home"></i> 后台首页</a></li>
+      <li class="active"><i class="fa fa-golbe"></i> 用户设置</li>
+    </ol>
+  </section>
+  <!-- content-header end -->
+
+  <section class="content">
+    <div class="nav-tabs-custom">
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#tab_1" data-toggle="tab">注册</a></li>
+        <li><a href="#tab_2" data-toggle="tab">登录</a></li>
+        <li><a href="#tab_3" data-toggle="tab">默认头像</a></li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane active" id="tab_1">
+
+        </div>
+        <div class="tab-pane" id="tab_2">
+
+        </div>
+
+        <div class="tab-pane" id="tab_3">
+         
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</block>
+
+<block name="script">
+  <script type="text/javascript">
+    seajs.use('/Public/js/admin/setting/user.js')
+  </script>
+</block>

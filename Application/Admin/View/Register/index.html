@@ -1,0 +1,58 @@
+<extend name="Common:layout"/>
+
+<block name="content">
+  <div class="form">
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3>用户注册</h3>
+      </div>
+      <div class="panel-body">
+        <form id="register-form" action="{:U('/Admin/Register/register')}" method="post">
+          <input type="hidden" name="return_url" value="{$returnUrl}">
+          <div class="form-group mb40">
+          	<label class="control-label" for="form_username">用户名：</label>
+            <div class="controls">
+	            <input class="form-control" type="text" name="username" id="form_username" data-url="checkUserName" required>
+	            <div class="help-block"></div>
+            </div>
+          </div>
+          <div class="form-group mb40">
+            <label class="control-label" for="form_email">邮箱：</label>
+            <div class="controls">
+	            <input class="form-control" type="text" name="email" id="form_email" data-url="checkEmail" required>
+	            <div class="help-block"></div>
+	          </div>
+          </div>
+          <div class="form-group mb40">
+          	<label class="control-label" for="form_password">密码：</label>
+            <div class="controls">            	
+	            <input class="form-control" type="password" name="password" id="form_password" required>
+	            <div class="help-block"></div>
+            </div>
+          </div>
+          <div class="form-group mb40">
+            <label class="control-label" for="form_password_repeat">重复密码：</label>
+            <div class="controls">
+	            <input class="form-control" type="password" name="password_repeat" id="form_password_repeat" required>
+	            <div class="help-block"></div>
+	          </div>
+          </div>
+
+          <div class="form-group mb40">
+          	<div class="controls">
+            	<button id="submit" type="submit" class="btn btn-block btn-success">注册</button>
+          	</div>
+          </div>
+        </form>
+      </div>
+    </div>
+ 
+  </div>
+</block>
+
+<block name="script">
+  <script type="text/javascript">
+    seajs.use('/Public/js/register.js')
+  </script>
+</block>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="renderer" content="webkit">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{$title}</title>
+  <link rel="stylesheet" href="__PUBLIC__/lib/bootstrap/3.3.7/css/bootstrap.css">
+  <link rel="stylesheet" href="__PUBLIC__/lib/font-awesome/4.7.0/css/font-awesome.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="__PUBLIC__/lib/ionicons/2.2.0/css/ionicons.css">
+  <!-- adminlte style -->
+  <link rel="stylesheet" href="__PUBLIC__/lib/adminlte/2.4.2/css/adminlte.css">
+  <!-- skin style -->
+  <link rel="stylesheet" href="__PUBLIC__/lib/adminlte/2.4.2/css/skins/skin-yellow-light.css">
+  <link rel="stylesheet" href="__PUBLIC__/css/admin.css">
+  <block name="css"></block>
+</head>
+<body class="skin-yellow-light">
+  <div class="wrapper">
+
+    <block name="header">
+      {:W('Admin/header', array())}
+    </block>
+
+    <block name="sidebar">
+      {:W('Admin/sidebar', array())}
+    </block>
+
+    <div class="content-wrapper">
+      <block name="content"></block>
+    </div>
+
+    <block name="footer"></block>
+
+  </div>
+  <script type="text/javascript" src="__PUBLIC__/lib/seajs/seajs/2.2.1/sea.js"></script>
+  <script type="text/javascript" src="__PUBLIC__/lib/seajs-global-config.js"></script>
+  <block name="script"></block>
+</body>
+</html>
