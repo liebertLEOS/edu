@@ -1,0 +1,127 @@
+[ 2018-04-12T09:05:27+08:00 ] ::1 /index.php/Admin/DataBase/export.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000763s ]
+
+[ 2018-04-12T09:05:28+08:00 ] ::1 /index.php/Admin/DataBase/dist/img/user2-160x160.jpg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000753s ]
+
+[ 2018-04-12T09:05:28+08:00 ] ::1 /index.php/Admin/DataBase/dist/img/user4-128x128.jpg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000842s ]
+
+[ 2018-04-12T09:05:28+08:00 ] ::1 /index.php/Admin/DataBase/dist/img/user3-128x128.jpg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000850s ]
+
+[ 2018-04-12T09:05:35+08:00 ] ::1 /Admin/DataBase/doExport
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000516s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000953s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001100s ]
+SQL: SHOW CREATE TABLE `course` [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS count FROM `course` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `course` LIMIT 0, 1000 [ RunTime:0.0007s ]
+SQL: SHOW CREATE TABLE `course_chapter` [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS count FROM `course_chapter` [ RunTime:0.0004s ]
+SQL: SHOW CREATE TABLE `course_favorite` [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS count FROM `course_favorite` [ RunTime:0.0004s ]
+SQL: SHOW CREATE TABLE `course_lesson` [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS count FROM `course_lesson` [ RunTime:0.0003s ]
+SQL: SHOW CREATE TABLE `course_lesson_learn` [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS count FROM `course_lesson_learn` [ RunTime:0.0003s ]
+SQL: SHOW CREATE TABLE `course_material` [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS count FROM `course_material` [ RunTime:0.0003s ]
+SQL: SHOW CREATE TABLE `course_member` [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS count FROM `course_member` [ RunTime:0.0002s ]
+SQL: SHOW CREATE TABLE `course_thread` [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS count FROM `course_thread` [ RunTime:0.0002s ]
+SQL: SHOW CREATE TABLE `course_thread_post` [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS count FROM `course_thread_post` [ RunTime:0.0003s ]
+SQL: SHOW CREATE TABLE `file` [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS count FROM `file` [ RunTime:0.0003s ]
+SQL: SELECT * FROM `file` LIMIT 0, 1000 [ RunTime:0.0004s ]
+SQL: SHOW CREATE TABLE `file_group` [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS count FROM `file_group` [ RunTime:0.0002s ]
+SQL: SELECT * FROM `file_group` LIMIT 0, 1000 [ RunTime:0.0002s ]
+SQL: SHOW CREATE TABLE `log` [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS count FROM `log` [ RunTime:0.0002s ]
+SQL: SELECT * FROM `log` LIMIT 0, 1000 [ RunTime:0.0004s ]
+SQL: SHOW CREATE TABLE `message` [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS count FROM `message` [ RunTime:0.0003s ]
+SQL: SHOW CREATE TABLE `setting` [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS count FROM `setting` [ RunTime:0.0003s ]
+SQL: SELECT * FROM `setting` LIMIT 0, 1000 [ RunTime:0.0003s ]
+SQL: SHOW CREATE TABLE `user` [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS count FROM `user` [ RunTime:0.0003s ]
+SQL: SELECT * FROM `user` LIMIT 0, 1000 [ RunTime:0.0003s ]
+
+[ 2018-04-12T09:05:38+08:00 ] ::1 /index.php/Admin/DataBase/export.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000916s ]
+
+[ 2018-04-12T09:05:38+08:00 ] ::1 /index.php/Admin/DataBase/dist/img/user2-160x160.jpg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000802s ]
+
+[ 2018-04-12T09:05:38+08:00 ] ::1 /index.php/Admin/DataBase/dist/img/user4-128x128.jpg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000684s ]
+
+[ 2018-04-12T09:05:38+08:00 ] ::1 /index.php/Admin/DataBase/dist/img/user3-128x128.jpg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000698s ]
+
+[ 2018-04-12T09:05:41+08:00 ] ::1 /index.php/Admin/DataBase/import.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000492s ]
+
+[ 2018-04-12T09:05:41+08:00 ] ::1 /index.php/Admin/DataBase/dist/img/user4-128x128.jpg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000726s ]
+
+[ 2018-04-12T09:05:41+08:00 ] ::1 /index.php/Admin/DataBase/dist/img/user2-160x160.jpg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000758s ]
+
+[ 2018-04-12T09:05:46+08:00 ] ::1 /Admin/DataBase/deleteBackupFile
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000803s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000968s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001059s ]
+
+[ 2018-04-12T09:05:47+08:00 ] ::1 /index.php/Admin/DataBase/import.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000601s ]
+
+[ 2018-04-12T09:05:47+08:00 ] ::1 /index.php/Admin/DataBase/dist/img/user3-128x128.jpg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000770s ]
+
+[ 2018-04-12T09:05:47+08:00 ] ::1 /index.php/Admin/DataBase/dist/img/user2-160x160.jpg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001040s ]
+
+[ 2018-04-12T09:05:47+08:00 ] ::1 /index.php/Admin/DataBase/dist/img/user4-128x128.jpg
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000953s ]
+
