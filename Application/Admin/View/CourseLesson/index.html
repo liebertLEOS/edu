@@ -1,0 +1,172 @@
+<extend name="Common:layout-admin"/>
+
+<block name="content">
+  <!-- content-header start -->
+  <section class="content-header">
+    <h1>课时管理<small></small>
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="{:U('Admin/Index/index')}"><i class="fa fa-home"></i> 后台首页</a></li>
+      <li><a href="{:U('Admin/Course/index')}"><i class="fa fa-graduation-cap"></i> 查看课程</a></li>
+      <li class="active"><i class="fa fa-golbe"></i> 课时管理</li>
+    </ol>
+  </section>
+  <!-- content-header end -->
+  <section class="content">
+    <div class="box">
+      <div class="box-header with-border">
+        <h3 class="box-title">课时列表</h3>
+        <div class="pull-right">
+          <span id="addCourse" class="btn btn-warning btn-sm" data-placement="top"><i class="fa fa-plus"></i> 添加课时</span>
+        </div>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body">
+
+        <ul class="lesson-list sortable-list" id="course-item-list" data-sort-url="/course/9/manage/lesson/sort">
+          <li class="item-lesson row">
+
+            <div class="col-sm-8 item-content">
+              <i class="fa fa-file-photo-o text-success"></i>
+              课时 <span class="number">1</span>：经典案例
+            </div>
+            <div class="col-sm-4 item-tools text-right">
+              <div class="btn-group btn-group-sm">
+                <button type="button" class="btn btn-flat btn-default">编辑</button>
+                <button type="button" class="btn btn-flat btn-default">预览</button>
+                <div class="btn-group btn-group-sm">
+                  <button type="button" class="btn btn-flat btn-default dropdown-toggle" data-toggle="dropdown">
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-right">
+                    <li><a href="#">添加资料</a></li>
+                    <li><a href="#">取消发布</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+          </li>
+          <li class="item-lesson row">
+
+            <div class="col-sm-8 item-content">
+              <i class="fa fa-file-photo-o text-success"></i>
+              课时 <span class="number">2</span>：经典案例
+            </div>
+            <div class="col-sm-4 item-tools text-right">
+              <div class="btn-group btn-group-sm">
+                <button type="button" class="btn btn-flat btn-default">编辑</button>
+                <button type="button" class="btn btn-flat btn-default">预览</button>
+                <div class="btn-group btn-group-sm">
+                  <button type="button" class="btn btn-flat btn-default dropdown-toggle" data-toggle="dropdown">
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-right">
+                    <li><a href="#">添加资料</a></li>
+                    <li><a href="#">取消发布</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+          </li>
+          <li class="item-lesson row">
+
+            <div class="col-sm-8 item-content">
+              <i class="fa fa-file-photo-o text-success"></i>
+              课时 <span class="number">3</span>：经典案例
+            </div>
+            <div class="col-sm-4 item-tools text-right">
+              <div class="btn-group btn-group-sm">
+                <button type="button" class="btn btn-flat btn-default">编辑</button>
+                <button type="button" class="btn btn-flat btn-default">预览</button>
+                <div class="btn-group btn-group-sm">
+                  <button type="button" class="btn btn-flat btn-default dropdown-toggle" data-toggle="dropdown">
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-right">
+                    <li><a href="#">添加资料</a></li>
+                    <li><a href="#">取消发布</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+          </li>
+
+        </ul>
+
+      </div>
+      <!-- /.box-body -->
+      <div class="box-footer clearfix">
+      </div>
+
+    </div>
+
+  </section>
+
+</block>
+
+
+
+<block name="footer">
+  <div id="addCourseLesson" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form class="form-horizontal" id="course-form" method="post" novalidate="novalidate" action="{:U('Admin/Course/add')}">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times-circle-o"></i></button>
+            <h4 class="modal-title">添加课程</h4>
+          </div>
+          <div class="modal-body">
+
+            <div class="form-group">
+              <label class="col-sm-3 control-label">标题</label>
+              <div class="col-sm-8 controls">
+                <input id="course_title" name="title" required="required" class="form-control" type="text">
+                <div class="help-block" style="display:none;"></div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-sm-3 control-label">副标题</label>
+              <div class="col-sm-8 controls">
+                <textarea id="course_subtitle" name="subtitle" class="form-control"></textarea>
+                <div class="help-block" style="display:none;"></div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-sm-3 control-label">连载状态</label>
+              <div class="col-sm-8 radio">
+                <label>
+                  <input name="serializeMode" value="none" checked="checked" type="radio"> 非连载课程
+                </label>
+                <label>
+                  <input name="serializeMode" value="serialize" type="radio"> 更新中
+                </label>
+                <label>
+                  <input name="serializeMode" value="finished" type="radio"> 已完结
+                </label>
+              </div>
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <div id="msg" class="pull-left"></div>
+            <button id="submit" type="submit" class="btn btn-success btn-sm" data-loading-text="提交中..."><i class="fa fa-check"></i> 提交</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</block>
+
+
+
+
+<block name="script">
+  <script type="text/javascript">
+    seajs.use('/Public/js/admin/CourseLesson/index.js')
+  </script>
+</block>

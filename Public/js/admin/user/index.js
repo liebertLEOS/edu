@@ -70,9 +70,7 @@ define(function(require, exports, module){
 							}
 						)
 						// 刷新页面
-						setTimeout(function(){
-							window.location.reload();
-						}, 3000)
+						window.location.reload();
 
 					} else {
 						// 提示删除失败

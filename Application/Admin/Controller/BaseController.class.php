@@ -64,19 +64,19 @@ class BaseController extends Controller {
         $userid = cookie('uid');
         $userModel = M('user');
 
-        $user = $userModel->filed('id, password')->where("id='{$userid}' AND loginSessionId='{$rememberMe}'");
+        $user = $userModel->field('id, password')->where("id='{$userid}' AND loginSessionId='{$rememberMe}'");
 
         if ($user) {
             // 更新会话token
-            $remember_me = md5($user['password'].time());
+            $remember_me = md5($user->password.time());
             // 写入会话
-            session('uid', $user['id']);
+            session('uid', $user->id);
 
             // 更新客户端的cookie
             cookie('remember_me', $remember_me, 3600*24*7);
 
             // 将更新后的remember_me
-            $userModel->where("id={$user['id']}")->setField('loginSessionId', $remember_me);
+            $userModel->where("id={$user->id}")->setField('loginSessionId', $remember_me);
         } else {
             return false;
         }

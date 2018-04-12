@@ -112,7 +112,32 @@ return array(
                     'url'      => 'Admin/Course/index',
                     'icon'     => 'circle-o',
                     'path'     => '10,11',
-                    'children' => null
+                    'children' => array(
+                        array(
+                            'id'       => '22',
+                            'title'    => '课时管理',
+                            'url'      => 'Admin/CourseLesson/index',
+                            'icon'     => 'circle-o',
+                            'path'     => '10,11,22',
+                            'children' => null
+                        ),
+                        array(
+                            'id'       => '23',
+                            'title'    => '文件管理',
+                            'url'      => '',
+                            'icon'     => 'circle-o',
+                            'path'     => '10,11,23',
+                            'children' => null
+                        ),
+                        array(
+                            'id'       => '24',
+                            'title'    => '学员管理',
+                            'url'      => '',
+                            'icon'     => 'circle-o',
+                            'path'     => '10,11,24',
+                            'children' => null
+                        )
+                    )
                 ),
                 array(
                     'id'       => '12',

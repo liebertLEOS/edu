@@ -47,8 +47,8 @@
               <td class="text-center">{$vo.createdtime}</td>
               <td class="text-center">{$vo.logintime}</td>
               <td class="text-center">
-                <span class="btn btn-warning btn-sm" data-placement="top" data-userid="{$vo.id}"><i class="fa fa-edit"></i> 编辑</span>
-                <span class="btn btn-danger btn-sm" data-placement="top" data-userid="{$vo.id}"><i class="fa fa-trash"></i> 删除</span>
+                <span class="btn btn-warning btn-xs" data-placement="top" data-userid="{$vo.id}"><i class="fa fa-edit"></i> 编辑</span>
+                <span class="btn btn-danger btn-xs delete" data-placement="top" data-userid="{$vo.id}"><i class="fa fa-trash"></i> 删除</span>
               </td>
             </tr>
           </volist>
@@ -72,6 +72,6 @@
 
 <block name="script">
   <script type="text/javascript">
-    seajs.use('/Public/js/admin/setting/log.js')
+    seajs.use('/Public/js/admin/user/index.js')
   </script>
 </block>

@@ -21,7 +21,7 @@
       </div>
       <!-- /.box-header -->
       <div class="box-body">
-        <table class="table table-bordered table-hover">
+        <table class="table table-bordered table-hover v-center">
           <tbody><tr>
             <th class="text-center">
               <input id="checkall" type="checkbox" />
@@ -40,13 +40,27 @@
               <input name="check" type="checkbox" value="{$vo.id}"/>
             </td>
             <td class="text-right">{$vo.id}</td>
-            <td class="text-right">{$vo.title}</td>
+            <td class="text-center">{$vo.title}</td>
             <td class="text-center">{$vo.serializemode}</td>
             <td class="text-center hidden-xs">{$vo.studentnum}</td>
             <td class="text-center hidden-xs">{$vo.status}</td>
             <td class="text-center hidden-xs">{$vo.createduser}</td>
             <td class="text-center">
-              <span  class="btn btn-danger btn-xs delete" data-id="{$vo.id}" data-placement="left"><i class="fa fa-trash"></i></span>
+              <div class="btn-group btn-group-sm">
+                <button type="button" class="btn btn-warning">编辑课程</button>
+                <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">
+                  <span class="caret"></span>
+                  <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                  <li><a href="{:U('Admin/CourseLesson/index', array('id' => $vo['id']))}"><i class="fa fa-eye"></i>  发布课程</a></li>
+                  <li><a href="{:U('Admin/CourseLesson/index', array('id' => $vo['id']))}"><i class="fa fa-thumbs-up"></i>  推荐课程</a></li>
+                  <li class="divider"></li>
+                  <li><a href="{:U('Admin/CourseLesson/index', array('id' => $vo['id']))}"><i class="fa fa-file-video-o"></i>  课时管理</a></li>
+                  <li><a href="{:U('Admin/CourseLesson/index', array('id' => $vo['id']))}"><i class="fa fa-file"></i>  文件管理</a></li>
+                  <li><a href="{:U('Admin/CourseLesson/index', array('id' => $vo['id']))}"><i class="fa fa-user"></i>  学员管理</a></li>
+                </ul>
+              </div>
             </td>
           </tr>
           </volist>
@@ -114,7 +128,8 @@
 
           </div>
           <div class="modal-footer">
-            <button id="submit" type="submit" class="btn btn-success btn-sm"><i class="fa fa-check"></i> 提交</button>
+            <div id="msg" class="pull-left"></div>
+            <button id="submit" type="submit" class="btn btn-success btn-sm" data-loading-text="提交中..."><i class="fa fa-check"></i> 提交</button>
           </div>
         </form>
       </div>

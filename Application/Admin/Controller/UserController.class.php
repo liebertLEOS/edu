@@ -61,7 +61,7 @@ class UserController extends BaseController
         $ids = implode(',', $ids);
 
         // 从数据库中删除
-        $data = M('log')->where("id in({$ids})")->delete();
+        $data = M('user')->where("id in({$ids})")->delete();
 
         if ($data) {
             $this->ajaxReturn(array(

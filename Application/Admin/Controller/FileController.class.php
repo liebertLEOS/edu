@@ -161,7 +161,6 @@ class FileController extends BaseController {
         }
 
         $ids = implode(',', $ids);
-        var_dump($ids);
 
         // 从数据库中删除
         $data = M('file')->where("id in({$ids})")->delete();

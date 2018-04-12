@@ -36,26 +36,43 @@ define(function(require, exports, module){
 		$('#addModal').modal();
 	})
 
-	var Validator = require('bootstrap.validator');
+    //var Validator = require('bootstrap.validator');
+    //
+    //var validator = new Validator({
+    //  element: $('#course-form')
+    //})
 
-	var validator = new Validator({
-      element: $('#course-form'),
-      onFormValidated: function(error, results, $form) {
-          if (error) {
-              return false
-          }
-          
-          $('#submit').html('<i class="fa fa-spinner fa-spin"></i>&nbsp;提交中，请稍等...').addClass('disabled').attr('disabled', 'disabled')
+	$('#course-form').submit(function(e){
+		//$('#submit').html('<i class="fa fa-spinner fa-spin"></i>&nbsp;提交中，请稍等...').addClass('disabled').attr('disabled', 'disabled')
+		$('#submit').button('loading')
+		// 使用ajax提交
+		$.ajax({
+			type: 'POST',
+			url: '/Admin/Course/add',
+			data: {
+				title: this.title.value,
+				subtitle: this.subtitle.value,
+				serializeMode: this.serializeMode.value
+			},
+			success: function (data) {
+				if (data.success) {
+					// 提交成功
+					window.location.reload()
+				} else {
+					//$('#submit').text('提交').removeClass('disabled').attr('disabled', null)
+					$('#submit').button('reset')
+					$('#msg').html('<span class="text-danger">' + data.message + '</span>')
+				}
+			},
+			error: function (res) {
+				// 服务器响应失败
+				$('#msg').html('<span class="text-danger">服务器响应失败</span>')
+				$('#submit').button('reset')
+			}
+		})
 
-          return false
-      },
-      failSilently: true
-    })
 
-	validator.addItem({
-      element: '[name="title"]', 
-      required: true,
-      display: '标题'
-    })
+		return false
+	})
 
 })

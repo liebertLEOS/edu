@@ -1,11 +1,11 @@
 <?php
 /**
- *          CourseController(Admin\Controller\CourseController.class.php)
+ *          CourseLessonController(Admin\Controller\CourseController.class.php)
  *
- *    功　　能：文件管理控制器
+ *    功　　能：课程课时管理控制器
  *
  *    作　　者：李康
- *    完成时间：2018/04/10 10:45
+ *    完成时间：2018/04/10 16:53
  *    修　　改：2018/04/10
  *
  */
@@ -14,10 +14,10 @@ namespace Admin\Controller;
 use Think\Upload;
 use Think\Page;
 
-class CourseController extends BaseController {
+class CourseLessonController extends BaseController {
 
     /**
-     * 显示课程列表
+     * 显示课程课时列表
      */
     public function index()
     {
