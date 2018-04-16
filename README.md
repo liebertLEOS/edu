@@ -10,6 +10,9 @@ edu：education，在线课程网站
 *  文件管理：上传、删除文件，文件组管理
 *  数据管理：数据备份、恢复
 
+## 基本架构
+Apache/2.4.23 + PHP/5.4.45 + MySQL/5.5.53
+
 ## 前端组件
 *  bootstrap
 *  adminlte
@@ -22,5 +25,5 @@ edu：education，在线课程网站
 *  jquery-plupload-queue
 *  ckeditor
 
-#  后端组件
+## 后端组件
 *  ThinkPHP
