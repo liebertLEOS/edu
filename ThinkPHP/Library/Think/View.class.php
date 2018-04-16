@@ -64,14 +64,14 @@ class View {
      * @param string $prefix 模板缓存前缀
      * @return mixed
      */
-    public function display($templateFile='',$charset='',$contentType='',$content='',$prefix='') {
+    public function display($templateFile='',$charset='',$contentType='',$content='',$prefix='',$cacheControl='') {
         G('viewStartTime');
         // 视图开始标签
         Hook::listen('view_begin',$templateFile);
         // 解析并获取模板内容
         $content = $this->fetch($templateFile,$content,$prefix);
         // 输出模板内容
-        $this->render($content,$charset,$contentType);
+        $this->render($content,$charset,$contentType,$cacheControl);
         // 视图结束标签
         Hook::listen('view_end');
     }
@@ -84,12 +84,12 @@ class View {
      * @param string $contentType 输出类型
      * @return mixed
      */
-    private function render($content,$charset='',$contentType=''){
+    private function render($content,$charset='',$contentType='',$cacheControl=''){
         if(empty($charset))  $charset = C('DEFAULT_CHARSET');
         if(empty($contentType)) $contentType = C('TMPL_CONTENT_TYPE');
         // 网页字符编码
         header('Content-Type:'.$contentType.'; charset='.$charset);
-        header('Cache-control: '.C('HTTP_CACHE_CONTROL'));  // 页面缓存控制
+        header('Cache-control: '.($cacheControl == '' ? C('HTTP_CACHE_CONTROL') : $cacheControl));  // 页面缓存控制
         header('X-Powered-By:ThinkPHP');
         // 输出模板文件
         echo $content;

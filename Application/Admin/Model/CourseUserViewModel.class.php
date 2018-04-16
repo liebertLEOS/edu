@@ -1,12 +1,5 @@
 <?php
 /**
- *    BaseController(Admin\Controller\BaseController.class.php)
- *
- *    功　　能：后台首页基类控制器
- *
- *    作　　者：李康
- *    完成时间：2018/04/10
- *    修　　改：2018/04/10
  *
  */
 namespace Admin\Model;

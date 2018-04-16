@@ -1,0 +1,30 @@
+<div class="modal-dialog modal-lg">
+  <div class="modal-content">
+    <form class="form-horizontal" id="course-form" method="post" novalidate="novalidate" action="{:U('Admin/Course/add')}">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times"></i></button>
+        <h4 class="modal-title">上传课程资料</h4>
+      </div>
+      <div class="modal-body">
+
+        <div id="file-uploader-container" class="mb20" data-target-type="courselesson" data-upload-mode="local" data-hls-encrypted="1">
+           <div id="file-chooser-uploader-div" data-role="uploader-div" data-upload-url="{:U('/Admin/CourseMaterial/add')}"></div>
+        </div>
+
+        <div class="alert alert-info-c">
+          <ul>
+            <li>支持<strong>mp4, mp3</strong>格式的文件上传，且文件大小不能超过<strong>500.0MB</strong>。<br>MP4文件的视频编码格式，请使用AVC(H264)编码，否则浏览器无法播放。</li>
+            <li>视频将上传到<strong>网站服务器</strong></li>
+          </ul>
+        </div>
+
+        <input name="course_id" type="hidden" value="{$courseId}"/>
+
+        <script>app.load('\/Public\/js\/admin\/CourseMaterial\/upload.js')</script>
+
+      </div>
+<!--       <div class="modal-footer">
+      </div> -->
+    </form>
+  </div>
+</div>

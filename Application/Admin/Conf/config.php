@@ -27,7 +27,7 @@ return array(
     'MENU' => array(
         array(
             'id'       => '1',
-            'title'    => '系统配置',
+            'title'    => '系统管理',
             'url'      => '#',
             'icon'     => 'gear',
             'path'     => '1',
@@ -124,7 +124,7 @@ return array(
                         array(
                             'id'       => '23',
                             'title'    => '文件管理',
-                            'url'      => '',
+                            'url'      => 'Admin/CourseMaterial/index',
                             'icon'     => 'circle-o',
                             'path'     => '10,11,23',
                             'children' => null

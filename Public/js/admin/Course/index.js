@@ -5,6 +5,7 @@ define(function(require, exports, module){
 	var $ = require('jquery-3.3.1')
 
 	require('bootstrap')
+	require('modal.hack2')
 
 	require('tree')
 
@@ -31,10 +32,6 @@ define(function(require, exports, module){
 
 	require('confirmation')
 	require('notify')
-
-	$('#addCourse').click(function () {
-		$('#addModal').modal();
-	})
 
     //var Validator = require('bootstrap.validator');
     //

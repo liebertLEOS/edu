@@ -66,7 +66,7 @@ function addFile($uid, $file, $groupId = 1) {
     if (!$info) {
         return array(
             'type' => 1,
-            'error' => $upload->getError()
+            'message' => $upload->getError()
         );
 
     }
@@ -94,15 +94,17 @@ function addFile($uid, $file, $groupId = 1) {
                 'id'     => $data,
                 'userId' => $uid,
                 'key'    => $data,
+                'name'   => $info['name'],
                 'uri'    => $info['savepath'].$info['savename'],
                 'mime'   => $info['type'],
                 'ext'    => $info['ext'],
+                'size'    => $info['size'],
                 'createdTime' => $createdTime
             )
         );
     } else {
         return array(
-            'error' => 2,
+            'type' => 2,
             'message' => '保存数据库失败'
         );
     }

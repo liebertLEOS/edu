@@ -69,47 +69,95 @@ class CourseController extends BaseController {
         $this->assign('page', $pageHtml);
 
         $this->display();
-    }
+    } 
 
     public function add()
     {
-        $title = I('post.title');
-        $subtitle = I('post.subtitle');
-        $serializeMode = I('post.serializeMode');
+        // sleep(2);
+        if (IS_POST) {
+            $title = I('post.title');
+            $subtitle = I('post.subtitle');
+            $about = I('post.about');
+            $serializeMode = I('post.serializeMode');
 
-        if ('' == $title) {
+            if ('' == $title) {
+                $this->ajaxReturn(array(
+                    'success' => false,
+                    'message' => '标题不能为空！'
+                ));
+            }
+
+            // 获取课程设置数据
+            $sourseSetting = M('setting')->where('name="course"')->find();
+            $sourseSetting = unserialize($sourseSetting);
+
+            $id = M('course')->add(array(
+                'title' => $title,
+                'subtitle' => $subtitle,
+                'about' => $about,
+                'serializeMode' => $serializeMode,
+                'smallPicture' => '', //
+                'largePicture' => '', //
+                'userId' => $this->uid,
+                'createdTime' => time()
+            ));
+
+            if ($id) {
+                $this->ajaxReturn(array(
+                    'success' => true,
+                    'message' => '创建成功！'
+                ));
+            }
+
             $this->ajaxReturn(array(
                 'success' => false,
-                'message' => '标题不能为空！'
+                'message' => '创建失败！'
             ));
+        } else {
+            $this->display();
         }
 
-        // 获取课程设置数据
-        $sourseSetting = M('setting')->where('name="course"')->find();
-        $sourseSetting = unserialize($sourseSetting);
+    }
 
-        $id = M('course')->add(array(
-            'title' => $title,
-            'subtitle' => $subtitle,
-            'serializeMode' => $serializeMode,
-            'smallPicture' => '', //
-            'largePicture' => '', //
-            'userId' => $this->uid,
-            'createdTime' => time()
-        ));
+    public function edit()
+    {
+        $courseId = I('course_id', 0);
 
-        if ($id) {
+        if (0 == $courseId) {
+            $this->error('参数不完整');
+        }
+
+        $course = M('Course')->field('id,title,subtitle,about,serializeMode')->where("id={$courseId}")->find();
+
+        if (IS_POST) {
+            $title = I('post.title');
+            $subtitle = I('post.subtitle');
+            $about = I('post.about');
+            $serializeMode = I('post.serializeMode');
+
+            if ('' == $title) {
+                $this->ajaxReturn(array(
+                    'success' => false,
+                    'message' => '标题不能为空！'
+                ));
+            }
+
+            M('course')->save(array(
+                'id' => $courseId,
+                'title' => $title,
+                'subtitle' => $subtitle,
+                'about' => $about,
+                'serializeMode' => $serializeMode
+            ));
+
             $this->ajaxReturn(array(
-                'success' => true,
-                'message' => '创建成功！'
-            ));
+                    'success' => true,
+                    'message' => '更新成功！'
+                ));
         }
 
-        $this->ajaxReturn(array(
-            'success' => false,
-            'message' => '创建失败！'
-        ));
-
+        $this->assign('course', $course);
+        $this->display(); 
     }
 
 }

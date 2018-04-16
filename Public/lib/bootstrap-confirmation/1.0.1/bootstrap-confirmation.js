@@ -20,6 +20,7 @@
 define(function(require, exports, module){
 
   var jQuery = require('jquery-3.3.1')
+  require('notify')
 
   !function ($) {
     'use strict';

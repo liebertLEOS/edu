@@ -1,7 +1,3 @@
-app = {}
-
-app.version = '1.0.0'
-
 seajs.config({
   alias: {
     'jquery'              : 'jquery/1.11.2/jquery',
@@ -9,6 +5,7 @@ seajs.config({
     'jquery-3.3.1'        : 'jquery/3.3.1/jquery',
     'jquery-validation'   : 'jquery-validation/1.17.0/jquery-validation',
     'bootstrap.validator' : 'common/validator',
+    'modal.hack2'         : 'common/bootstrap-modal-hack2',
     'autocomplete'        : 'arale/autocomplete/1.2.2/autocomplete',
     'upload'              : 'arale/upload/1.1.0/upload',
     'class'               : 'arale/class/1.1.0/class',
@@ -34,7 +31,14 @@ seajs.config({
     'fileinput'           : 'bootstrap-fileinput/4.4.8/js/fileinput',
     'fileinput-zh'        : 'bootstrap-fileinput/4.4.8/js/locales/zh',
     'fileinput-css'       : 'bootstrap-fileinput/4.4.8/css/fileinput.css',
-    'sortable'            : 'jquery-sortable/0.9.10/sortable'
+    'sortable'            : 'jquery-sortable/0.9.10/sortable',
+    'ckeditor'            : 'ckeditor/4.6.7/ckeditor',
+    'uploader'            : 'jquery-uploader/1.0.0/uploader',
+    'uploader-css'        : 'jquery-uploader/1.0.0/uploader.css',
+    'plupload'            : 'plupload-queue/2.0.0/plupload',
+    "plupload-queue-css"  : "plupload-queue/2.0.0/css/queue.css",
+    "plupload-queue"      : "plupload-queue/2.0.0/queue",
+    "plupload-queue-zh-cn": "plupload-queue/2.0.0/i18n/zh-cn",
   },
   // 变量配置
   vars: {
@@ -48,7 +52,7 @@ seajs.config({
     "common":"common"
   },
 
-  debug: true
+  debug: false
 
 });
 

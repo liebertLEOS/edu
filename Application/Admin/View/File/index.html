@@ -25,7 +25,6 @@
             </th>
             <th class="text-center">ID</th>
             <th class="text-center">文件名</th>
-            <th class="text-center">MIME信息</th>
             <th class="text-center hidden-xs">大小</th>
             <th class="text-center hidden-xs">扩展名</th>
             <th class="text-center hidden-xs">创建时间</th>
@@ -41,8 +40,7 @@
               <input name="check" type="checkbox" value="{$vo.id}"/>
             </td>
             <td class="text-right">{$vo.id}</td>
-            <td class="text-right">{$vo.originname}</td>
-            <td class="text-center">{$vo.mime}</td>
+            <td>{$vo.originname}</td>
             <td class="text-center hidden-xs">{$vo.size}</td>
             <td class="text-center hidden-xs">{$vo.ext}</td>
             <td class="text-center hidden-xs">{$vo.createdtime}</td>
@@ -60,7 +58,7 @@
       <!-- /.box-body -->
       <div class="box-footer clearfix">
         <div class="pull-left">
-          <span id="deleteAll" class="btn btn-warning btn-sm" data-placement="top"><i class="fa fa-trash"></i>全部删除</span>
+          <span id="deleteAll" class="btn btn-warning btn-sm" data-placement="top">批量删除</span>
         </div>
         <div class="pull-right">
           {$page}

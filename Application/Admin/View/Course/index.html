@@ -15,9 +15,6 @@
     <div class="box">
       <div class="box-header with-border">
         <h3 class="box-title">课程列表</h3>
-        <div class="pull-right">
-          <span id="addCourse" class="btn btn-warning btn-sm" data-placement="top"><i class="fa fa-plus"></i> 添加课程</span>
-        </div>
       </div>
       <!-- /.box-header -->
       <div class="box-body">
@@ -47,18 +44,18 @@
             <td class="text-center hidden-xs">{$vo.createduser}</td>
             <td class="text-center">
               <div class="btn-group btn-group-sm">
-                <button type="button" class="btn btn-warning">编辑课程</button>
+                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal" data-url="{:U('Admin/Course/edit', array('course_id' => $vo['id']))}">编辑课程</button>
                 <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">
                   <span class="caret"></span>
                   <span class="sr-only">Toggle Dropdown</span>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                  <li><a href="{:U('Admin/CourseLesson/index', array('id' => $vo['id']))}"><i class="fa fa-eye"></i>  发布课程</a></li>
-                  <li><a href="{:U('Admin/CourseLesson/index', array('id' => $vo['id']))}"><i class="fa fa-thumbs-up"></i>  推荐课程</a></li>
+                  <li><a href="{:U('Admin/CourseLesson/index', array('course_id' => $vo['id']))}"><i class="fa fa-eye"></i>  发布课程</a></li>
+                  <li><a href="{:U('Admin/CourseLesson/index', array('course_id' => $vo['id']))}"><i class="fa fa-thumbs-up"></i>  推荐课程</a></li>
                   <li class="divider"></li>
-                  <li><a href="{:U('Admin/CourseLesson/index', array('id' => $vo['id']))}"><i class="fa fa-file-video-o"></i>  课时管理</a></li>
-                  <li><a href="{:U('Admin/CourseLesson/index', array('id' => $vo['id']))}"><i class="fa fa-file"></i>  文件管理</a></li>
-                  <li><a href="{:U('Admin/CourseLesson/index', array('id' => $vo['id']))}"><i class="fa fa-user"></i>  学员管理</a></li>
+                  <li><a href="{:U('Admin/CourseLesson/index', array('course_id' => $vo['id']))}"><i class="fa fa-file-video-o"></i>  课时管理</a></li>
+                  <li><a href="{:U('Admin/CourseMaterial/index', array('course_id' => $vo['id']))}"><i class="fa fa-file"></i>  文件管理</a></li>
+                  <li><a href="{:U('Admin/CourseLesson/index', array('course_id' => $vo['id']))}"><i class="fa fa-user"></i>  学员管理</a></li>
                 </ul>
               </div>
             </td>
@@ -69,7 +66,8 @@
       <!-- /.box-body -->
       <div class="box-footer clearfix">
         <div class="pull-left">
-          <span id="deleteAll" class="btn btn-warning btn-sm" data-placement="top"><i class="fa fa-trash"></i>全部删除</span>
+          <span class="btn btn-default btn-sm" data-toggle="modal" data-target="#modal" data-url="{:U('Admin/Course/add')}"><i class="fa fa-plus"></i> 添加课程</span>
+          <span id="deleteAll" class="btn btn-warning btn-sm" data-placement="top">批量删除</span>
         </div>
         <div class="pull-right">
           {$page}
@@ -82,63 +80,10 @@
 
 </block>
 
-
-
 <block name="footer">
-  <div id="addModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <form class="form-horizontal" id="course-form" method="post" novalidate="novalidate" action="{:U('Admin/Course/add')}">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times-circle-o"></i></button>
-            <h4 class="modal-title">添加课程</h4>
-          </div>
-          <div class="modal-body">
-
-            <div class="form-group">
-              <label class="col-sm-3 control-label">标题</label>
-              <div class="col-sm-8 controls">
-                <input id="course_title" name="title" required="required" class="form-control" type="text">
-                <div class="help-block" style="display:none;"></div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label class="col-sm-3 control-label">副标题</label>
-              <div class="col-sm-8 controls">
-                <textarea id="course_subtitle" name="subtitle" class="form-control"></textarea>
-                <div class="help-block" style="display:none;"></div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label class="col-sm-3 control-label">连载状态</label>
-              <div class="col-sm-8 radio">
-                <label>
-                  <input name="serializeMode" value="none" checked="checked" type="radio"> 非连载课程
-                </label>
-                <label>
-                  <input name="serializeMode" value="serialize" type="radio"> 更新中
-                </label>
-                <label>
-                  <input name="serializeMode" value="finished" type="radio"> 已完结
-                </label>
-              </div>
-            </div>
-
-          </div>
-          <div class="modal-footer">
-            <div id="msg" class="pull-left"></div>
-            <button id="submit" type="submit" class="btn btn-success btn-sm" data-loading-text="提交中..."><i class="fa fa-check"></i> 提交</button>
-          </div>
-        </form>
-      </div>
-    </div>
+  <div id="modal" class="modal fade" role="dialog">
   </div>
 </block>
-
-
-
 
 <block name="script">
   <script type="text/javascript">

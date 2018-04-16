@@ -52,8 +52,8 @@ abstract class Controller {
      * @param string $prefix 模板缓存前缀
      * @return void
      */
-    protected function display($templateFile='',$charset='',$contentType='',$content='',$prefix='') {
-        $this->view->display($templateFile,$charset,$contentType,$content,$prefix);
+    protected function display($templateFile='',$charset='',$contentType='',$content='',$prefix='', $cacheControl='') {
+        $this->view->display($templateFile,$charset,$contentType,$content,$prefix,$cacheControl);
     }
 
     /**

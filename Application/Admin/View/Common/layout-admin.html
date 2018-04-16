@@ -35,8 +35,20 @@
     <block name="footer"></block>
 
   </div>
+  <script type="text/javascript">
+    var app = {}
+
+    app.version = '1.0.0'
+
+    app.config = {
+      loading_img_path: "\/Public\/images\/loading.svg"
+    }
+  </script>
   <script type="text/javascript" src="__PUBLIC__/lib/seajs/seajs/2.2.1/sea.js"></script>
   <script type="text/javascript" src="__PUBLIC__/lib/seajs-global-config.js"></script>
+  <script type="text/javascript">
+    seajs.use('/Public/js/app.js')
+  </script>
   <block name="script"></block>
 </body>
 </html>

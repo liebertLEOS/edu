@@ -84,7 +84,6 @@ class RegisterController extends BaseController {
      */
     public function register()
     {
-        return ;
         // 获取表单数据
         $username = I('post.username', '');
         $password = I('post.password', '');
@@ -94,15 +93,24 @@ class RegisterController extends BaseController {
 
         // 表单数据合法性校验
         if ( empty($username) || empty($password) || empty($email) ) {
-            $this->error('数据不能为空');
+            $this->ajaxReturn(array(
+                'success' => false,
+                'message' => '数据不能为空'
+            ));
         }
 
         if (strlen($username) > 20) {
-            $this->error('用户名长度不能超过20');
+            $this->ajaxReturn(array(
+                'success' => false,
+                'message' => '用户名长度不能超过20'
+            ));
         }
 
         if (strlen($password) > 20 || strlen($password) < 5) {
-            $this->error('请确保密码长度在5至20之间');
+            $this->ajaxReturn(array(
+                'success' => false,
+                'message' => '请确保密码长度在5至20之间'
+            ));
         }
 
         // 密码处理
@@ -125,9 +133,16 @@ class RegisterController extends BaseController {
             // 记录日志
             saveLog($id, 'register', 'register', "{$username}成功注册");
 
-            $this->success('注册成功，正在跳转至登录...！', U('Admin/Login/index'), 3);
+            $this->ajaxReturn(array(
+                'success' => true,
+                'message' => '注册成功！',
+                'url' => U('Admin/Login/index')
+            ));
         } else {
-            $this->error('注册失败！');
+            $this->ajaxReturn(array(
+                'success' => false,
+                'message' => '注册失败！'
+            ));
         }
 
     }
