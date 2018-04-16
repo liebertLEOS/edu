@@ -21,15 +21,12 @@ class RegisterController extends BaseController {
      */
     public function index()
     {
-//        $returnUrl = '../login/index';
-//        $isRegister = $this->checkRegister();
-//
-//        if($isRegister) {
-//            $this->success('用户已注册', $returnUrl, 1000);
-//        } else {
-//            $this->assign('returnUrl', $returnUrl);
-//            $this->display();
-//        }
+        $uid = $this->checkLogin();
+
+        if($uid) {
+            $this->error('用户已登录，请先退出！');
+        }
+
         $this->display();
     }
 
