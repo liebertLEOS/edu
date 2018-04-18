@@ -1,7 +1,6 @@
 define(function(require, exports, module) {
   var $ = require('jquery-3.3.1')
   var Notify = require('common/bootstrap-notify')
-  require('ckeditor')
 
   exports.run = function () {
     var $form = $("#course-lesson-form");
@@ -79,13 +78,15 @@ define(function(require, exports, module) {
 
     $form.find('[name="type"]:checked').trigger('change');
 
-    // course
-    // var editor = CKEDITOR.replace('lesson-content-field', {
-    //     toolbar: 'Full',
-    //     filebrowserImageUploadUrl: $('#lesson-content-field').data('imageUploadUrl'),
-    //     filebrowserFlashUploadUrl: $('#lesson-content-field').data('flashUploadUrl'),
-    //     height: 200
-    // });
+    window.CKEDITOR_BASEPATH = '/Public/lib/ckeditor/4.6.7/'
+    require('ckeditor')
+
+    var editor = CKEDITOR.replace('lesson-content-field', {
+        toolbar: 'Full',
+        filebrowserImageUploadUrl: $('#lesson-content-field').data('imageUploadUrl'),
+        filebrowserFlashUploadUrl: $('#lesson-content-field').data('flashUploadUrl'),
+        height: 180
+    });
 
     require('uploader');
     require('uploader-css');

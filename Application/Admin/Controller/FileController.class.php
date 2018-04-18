@@ -263,7 +263,13 @@ class FileController extends BaseController {
 
         $ids = implode(',', $ids);
 
-        // 从数据库中删除
+        // 删除文件
+        $files = M('file')->field('uri')->where("id in({$ids})")->select();
+        foreach ($files as $file) {
+          $filename = realpath(C('UPLOAD_DIR')) . DIRECTORY_SEPARATOR . $file['uri'];
+          unlink($filename);
+        }
+        // 删除数据库记录
         $data = M('file')->where("id in({$ids})")->delete();
 
         if ($data) {

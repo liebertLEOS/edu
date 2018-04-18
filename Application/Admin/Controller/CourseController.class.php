@@ -7,6 +7,7 @@
  *    作　　者：李康
  *    完成时间：2018/04/10 10:45
  *    修　　改：2018/04/10
+ *              2018/04/18 添加发布/关闭课程
  *
  */
 
@@ -28,9 +29,9 @@ class CourseController extends BaseController {
             $page = 1;
         }
 
-        $logModel = D('CourseUserView');
+        $CourseUserModel = D('CourseUserView');
 
-        $data = $logModel->page("$page, $numPerPage")->select();
+        $data = $CourseUserModel->page("$page, $numPerPage")->select();
 
         $data = array_map(function ($value) {
             switch ($value['serializemode']) {
@@ -47,20 +48,20 @@ class CourseController extends BaseController {
 
             switch ($value['status']) {
                 case 'published':
-                    $value['status'] = '已发布';
+                    $value['statustext'] = '已发布';
                     break;
                 case 'closed':
-                    $value['status'] = '已关闭';
+                    $value['statustext'] = '已关闭';
                     break;
                 default :
-                    $value['status'] = '未发布';
+                    $value['statustext'] = '草稿';
                     break;
             }
 
             return $value;
         }, $data);
 
-        $count = $logModel->count();
+        $count = $CourseUserModel->count();
 
         $page = new Page($count, $numPerPage, 'pagination pagination-sm no-margin');
         $pageHtml = $page->show();
@@ -96,6 +97,7 @@ class CourseController extends BaseController {
                 'subtitle' => $subtitle,
                 'about' => $about,
                 'serializeMode' => $serializeMode,
+                'status' => 'published',
                 'smallPicture' => '', //
                 'largePicture' => '', //
                 'userId' => $this->uid,
@@ -158,6 +160,31 @@ class CourseController extends BaseController {
 
         $this->assign('course', $course);
         $this->display(); 
+    }
+
+    public function publish ()
+    {
+        $publish = I('get.published');
+        $courseId = I('get.course_id', 0);
+
+        if (0 == $courseId) {
+            $this->ajaxReturn(array(
+                'success' => false,
+                'message' =>'参数不完整!'
+            ));
+        }
+
+        if ('published' != $publish && 'closed' != $publish) {
+            $publish = 'draft';
+        }
+
+        M('Course')->where("id={$courseId}")->setField('status',$publish);
+
+        $this->ajaxReturn(array(
+            'success' => true,
+            'message' =>'操作成功！'
+        ));
+
     }
 
 }

@@ -37,10 +37,10 @@
               <input name="check" type="checkbox" value="{$vo.id}"/>
             </td>
             <td class="text-right">{$vo.id}</td>
-            <td class="text-center">{$vo.title}</td>
+            <td>{$vo.title}</td>
             <td class="text-center">{$vo.serializemode}</td>
             <td class="text-center hidden-xs">{$vo.studentnum}</td>
-            <td class="text-center hidden-xs">{$vo.status}</td>
+            <td class="text-center hidden-xs">{$vo.statustext}</td>
             <td class="text-center hidden-xs">{$vo.createduser}</td>
             <td class="text-center">
               <div class="btn-group btn-group-sm">
@@ -50,12 +50,19 @@
                   <span class="sr-only">Toggle Dropdown</span>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                  <li><a href="{:U('Admin/CourseLesson/index', array('course_id' => $vo['id']))}"><i class="fa fa-eye"></i>  发布课程</a></li>
-                  <li><a href="{:U('Admin/CourseLesson/index', array('course_id' => $vo['id']))}"><i class="fa fa-thumbs-up"></i>  推荐课程</a></li>
-                  <li class="divider"></li>
                   <li><a href="{:U('Admin/CourseLesson/index', array('course_id' => $vo['id']))}"><i class="fa fa-file-video-o"></i>  课时管理</a></li>
-                  <li><a href="{:U('Admin/CourseMaterial/index', array('course_id' => $vo['id']))}"><i class="fa fa-file"></i>  文件管理</a></li>
+                  <li><a href="{:U('Admin/CourseMaterial/listByCourseId', array('course_id' => $vo['id']))}"><i class="fa fa-file"></i>  文件管理</a></li>
                   <li><a href="{:U('Admin/CourseLesson/index', array('course_id' => $vo['id']))}"><i class="fa fa-user"></i>  学员管理</a></li>
+                  <li class="divider"></li>
+                  <switch name="vo.status">
+                  <case value="published">
+                  <li><a class="ajax-op" href="javascript:" data-url="{:U('Admin/Course/publish', array('course_id' => $vo['id'], 'published' => 'closed'))}"><i class="fa fa-times-circle-o"></i>  关闭课程</a></li>
+                  </case>
+                  <default />
+                  <li><a class="ajax-op" href="javascript:" data-url="{:U('Admin/Course/publish', array('course_id' => $vo['id'], 'published' => 'published'))}"><i class="fa fa-check-circle-o"></i>  发布课程</a></li>
+                  </case>
+                  </switch>
+                  <li><a class="ajax-op" href="javascript:" data-url=""><i class="fa fa-thumbs-up"></i>  推荐课程</a></li>
                 </ul>
               </div>
             </td>

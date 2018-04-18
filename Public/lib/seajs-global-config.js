@@ -5,6 +5,7 @@ seajs.config({
     'jquery-3.3.1'        : 'jquery/3.3.1/jquery',
     'jquery-validation'   : 'jquery-validation/1.17.0/jquery-validation',
     'bootstrap.validator' : 'common/validator',
+    'bootstrap-notify'    : 'common/bootstrap-notify',
     'modal.hack2'         : 'common/bootstrap-modal-hack2',
     'autocomplete'        : 'arale/autocomplete/1.2.2/autocomplete',
     'upload'              : 'arale/upload/1.1.0/upload',

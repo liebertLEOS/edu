@@ -1,0 +1,89 @@
+<extend name="Common:layout-admin"/>
+
+<block name="content">
+  <!-- content-header start -->
+  <section class="content-header">
+    <h1>话题管理<small></small>
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="{:U('Admin/Index/index')}"><i class="fa fa-home"></i> 后台首页</a></li>
+      <li class="active"><i class="fa fa-golbe"></i> 查看话题</li>
+    </ol>
+  </section>
+  <!-- content-header end -->
+  <section class="content">
+    <div class="box">
+      <div class="box-header with-border">
+        <h3 class="box-title">话题列表</h3>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body">
+        <table class="table table-bordered table-hover v-center">
+          <tbody><tr>
+            <th class="text-center">
+              <input class="checkall" type="checkbox" />
+            </th>
+            <th class="text-center">ID</th>
+            <th class="text-center">话题名称</th>
+            <th class="text-center">话题内容</th>
+            <th class="text-center">回复/查看</th>
+            <th class="text-center hidden-xs">属性</th>
+            <th class="text-center hidden-xs">作者</th>
+            <th class="text-center">操作</th>
+          </tr>
+          <volist name="data" id="vo">
+          <tr>
+            <td class="text-center">
+              <input name="check" type="checkbox" value="{$vo.id}"/>
+            </td>
+            <td class="text-right">{$vo.id}</td>
+            <td>{$vo.title}</td>
+            <td>{$vo.content}</td>
+            <td class="text-center">{$vo.postnum} / {$vo.hitnum}</td>
+            <td class="text-center hidden-xs">
+              <eq name="vo.iselite" value='0'>
+                <span class="btn btn-default btn-sm ajax-op" data-url="{:U('Admin/CourseTopic/elite', array('id' => $vo['id']))}">精</span>
+              <else />
+                <span class="btn btn-success btn-sm ajax-op"  data-url="{:U('Admin/CourseTopic/unelite', array('id' => $vo['id']))}">精</span>
+              </eq>
+              <eq name="vo.isstick" value='0'>
+                <span class="btn btn-default btn-sm ajax-op" data-url="{:U('Admin/CourseTopic/stick', array('id' => $vo['id']))}">顶</span>
+              <else />
+                <span class="btn btn-success btn-sm ajax-op" data-url="{:U('Admin/CourseTopic/unstick', array('id' => $vo['id']))}">顶</span>
+              </eq>
+            </td>
+            <td class="text-center hidden-xs">{$vo.username}</td>
+            <td class="text-center">
+              <button type="button" class="btn btn-warning btn-sm ajax-op" data-url="{:U('Admin/CourseTopic/delete', array('id' => $vo['id']))}"><i class="fa fa-trash"></i></button>
+            </td>
+          </tr>
+          </volist>
+          </tbody></table>
+      </div>
+      <!-- /.box-body -->
+      <div class="box-footer clearfix">
+        <div class="pull-left">
+<!--           <label class="checkbox-inline"><input class="checkall" type="checkbox" /> 全选</label> -->
+          <span id="deleteAll" class="btn btn-warning btn-sm" data-placement="top">批量删除</span>
+        </div>
+        <div class="pull-right">
+          {$page}
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+</block>
+
+<block name="footer">
+  <div id="modal" class="modal fade" role="dialog">
+  </div>
+</block>
+
+<block name="script">
+  <script type="text/javascript">
+    seajs.use('/Public/js/admin/CourseTopic/index.js')
+  </script>
+</block>

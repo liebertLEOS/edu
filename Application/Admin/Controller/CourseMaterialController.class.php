@@ -1,6 +1,6 @@
 <?php
 /**
- *          CourseMaterialController(Admin\Controller\CourseMaterialController.class.php)
+ *    CourseMaterialController(Admin\Controller\CourseMaterialController.class.php)
  *
  *    功　　能：文件管理控制器
  *
@@ -18,20 +18,6 @@ class CourseMaterialController extends BaseController {
 
     public function index()
     {
-        $courseId = I('get.course_id', 0);
-
-        // 必须要有课程id
-        if ($courseId == 0) {
-            $this->error('参数不完整');
-        }
-
-        // 获取课程信息
-        $course = M('Course')->field('id, title')->where("id={$courseId}")->find();
-
-        if ($course == false) {
-            $this->error('课程不存在');
-        }
-
         $page = I('get.p', 1);
         $numPerPage = 10;
 
@@ -41,7 +27,7 @@ class CourseMaterialController extends BaseController {
 
         $logModel = D('CourseMaterialView');
 
-        $data = $logModel->where("courseId={$courseId}")->page("$page, $numPerPage")->select();
+        $data = $logModel->page("$page, $numPerPage")->select();
 
         $data = array_map(function ($value) {
             $value['createdtime'] = date('Y-m-d H:i:s', $value['createdtime']);
@@ -58,6 +44,53 @@ class CourseMaterialController extends BaseController {
         $this->assign('course', $course);
 
         $this->display();
+    }
+
+    public function listByCourseId()
+    {
+        $where = array();
+
+        $courseId = I('get.course_id', 0);
+        // 查看课程是否存在
+        if ($courseId <= 0) {
+            $this->error('参数不完整！');
+        } else {
+            // 获取课程信息
+            $course = M('Course')->field('id, title')->where("id={$courseId}")->find();
+
+            if ($course == false) {
+                $this->error('课程不存在！');
+            }
+
+            $where['courseId'] = $courseId;
+        }
+
+        $page = I('get.p', 1);
+        $numPerPage = 10;
+
+        if ($page < 1 ) {
+            $page = 1;
+        }
+
+        $logModel = D('CourseMaterialView');
+
+        $data = $logModel->where($where)->page("$page, $numPerPage")->select();
+
+        $data = array_map(function ($value) {
+            $value['createdtime'] = date('Y-m-d H:i:s', $value['createdtime']);
+            return $value;
+        }, $data);
+
+        $count = $logModel->count();
+
+        $page = new Page($count, $numPerPage, 'pagination pagination-sm no-margin');
+        $pageHtml = $page->show();
+
+        $this->assign('data', $data);
+        $this->assign('page', $pageHtml);
+        $this->assign('course', $course);
+
+        $this->display('index');
     }
 
     public function add()
@@ -142,14 +175,30 @@ class CourseMaterialController extends BaseController {
         // 从数据库中删除
         // 删除数据库中的记录CourseMaterial file
         // 删除文件
-        $data = M('file')->where("id in({$ids})")->delete();
+        $files = D('CourseMaterialView')->where("course_material.id in({$ids})")->select();
+        $fileIds = array();
+        foreach ($files as $file) {
+          $filename = realpath(C('UPLOAD_DIR')) . DIRECTORY_SEPARATOR . $file['uri'];
+          unlink($filename);
+          $fileIds[] = $file['fileid'];
+        }
 
-        if ($data) {
+        $fileIds = implode(',', $fileIds);
+
+        // 删除数据库记录
+        $model = M();
+        $model->startTrans();
+        $num1 = M('CourseMaterial')->where("id in({$ids})")->delete();
+        $num2 = empty($fileIds) ? true : M('file')->where("id in({$fileIds})")->delete();
+
+        if ($num1 && $num2) {
+            $model->commit();
             $this->ajaxReturn(array(
                 'success' => true,
-                'message' => "成功删除{$data}个记录"
+                'message' => "成功删除{$num1}个记录"
             ));
         } else {
+            $model->rollback();
             $this->ajaxReturn(array(
                 'success' => false,
                 'message' => '删除失败'

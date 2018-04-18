@@ -2,35 +2,22 @@
  * Created by lenovo on 2018/4/5.
  */
 define(function(require, exports, module){
-	var $ = require('jquery-3.3.1')
+  var $ = require('jquery-3.3.1')
+  var Notify = require('bootstrap-notify')
+  require('confirmation')
+  
+  var $checkbox = $('input[name="check"]')
 
-	require('bootstrap')
+  var check = []
 
-	require('tree')
+  $('#checkall').click(function(){
+  	var checked = this.checked
 
-	require('layout')
-
-	require('pushmenu')
-
-	$('[data-toggle="push-menu"]').pushMenu()
-
-	var $checkbox = $('input[name="check"]')
-
-	var check = []
-
-	$('#checkall').click(function(){
-		var checked = this.checked
-
-		$checkbox.each(function(){
-			this.checked = checked
-		})
-		//this.checked ? $checkbox.attr('checked', 'checked') : $checkbox.removeAttr('checked')
-	})
-
-	$('.delete').tooltip()
-
-	require('confirmation')
-	require('notify')
+  	$checkbox.each(function(){
+  		this.checked = checked
+  	})
+  	//this.checked ? $checkbox.attr('checked', 'checked') : $checkbox.removeAttr('checked')
+  })
 
 	$('.delete').confirmation({
 		title: '确认要删除吗？',
@@ -50,57 +37,16 @@ define(function(require, exports, module){
 				data: {
 					check_ids: checkIds
 				},
-				success: function(data){
-					if (data.success) {
+				success: function(res){
+					if (res.success) {
 						// 提示删除成功
-						$.notify(
-							{
-								// options
-								icon: 'glyphicon glyphicon-ok-sign',
-								message: data.message
-							},
-							{
-								// settings
-								type: 'success',
-								offset: {
-									x: 10,
-									y: 60
-								}
-							}
-						)
+						Notify.success(res.message)
 						// 刷新页面
 						window.location.reload();
 
 					} else {
 						// 提示删除失败
-						$.notify(
-							{
-								// options
-								icon: 'glyphicon glyphicon-remove-sign',
-								//title: '提示',
-								message: data.message
-							},
-							{
-								// settings
-								type: 'danger',
-								placement: {
-									from: "top",
-									align: "right"
-								},
-								offset: {
-									x: 10,
-									y: 60
-								},
-								spacing: 10,
-								z_index: 1031,
-								delay: 3000,
-								timer: 1000,
-								//animate: {
-								//	enter: 'animated fadeInDown',
-								//	exit: 'animated fadeOutUp'
-								//}
-							}
-						)
+						Notify.danger(res.message)
 					}
 				}
 			})
@@ -123,21 +69,7 @@ define(function(require, exports, module){
 			})
 
 			if (checkIds.length <= 0) {
-				$.notify(
-					{
-						// options
-						icon: 'glyphicon glyphicon-info-sign',
-						message: '请选择至少一条记录'
-					},
-					{
-						// settings
-						type: 'warning',
-						offset: {
-							x: 10,
-							y: 60
-						}
-					}
-				)
+        Notify.danger('请选择至少一条记录')
 				return
 			}
 
@@ -148,43 +80,15 @@ define(function(require, exports, module){
 				data: {
 					check_ids: checkIds
 				},
-				success: function(data){
+				success: function(res){
 					if (data.success) {
-						$.notify(
-							{
-								// options
-								icon: 'glyphicon glyphicon-ok-sign',
-								message: data.message
-							},
-							{
-								// settings
-								type: 'success',
-								offset: {
-									x: 10,
-									y: 60
-								}
-							}
-						)
+						Notify.success(res.message)
 
 						// 刷新页面
 						window.location.reload();
 
 					} else {
-						$.notify(
-							{
-								// options
-								icon: 'glyphicon glyphicon-remove-sign',
-								message: data.message
-							},
-							{
-								// settings
-								type: 'danger',
-								offset: {
-									x: 10,
-									y: 60
-								}
-							}
-						)
+						Notify.danger(res.message)
 					}
 				}
 			})

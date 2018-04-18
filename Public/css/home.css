@@ -1,0 +1,93 @@
+.nav.navbar-nav>li>a {
+    padding: 20px 30px;
+    line-height: 20px;
+    color: #333;
+    background: none;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition: all .3s ease;
+}
+.nav.navbar-nav>li>a:hover{
+	color: #f39c12;
+}
+.navbar-form {
+    margin: 15px 10px;
+}
+.navbar-form .form-control {
+    height: 30px;
+    width: 120px;
+    border-radius: 0px;
+    line-height: 28px;
+    padding: 0 24px 0 12px;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition: all .3s ease;
+}
+.navbar-form .form-control.active{
+	width: 240px;
+}
+.navbar-form .form-group {
+    position: relative;
+}
+.navbar-form .button {
+    position: absolute;
+    right: 2px;
+    top: 6px;
+    border: none;
+    background: none;
+}
+.nav.user-nav{
+	float:right;
+}
+.nav.user-nav>li {
+    float: left;
+    height: 60px;
+}
+.nav.user-nav>li>a.dropdown-toggle {
+    padding: 15px 15px;
+}
+.nav.user-nav>li>a {
+    display: block;
+    padding: 20px 15px;
+    color: #c1c1c1;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition: all .3s ease;
+}
+.avatar-xs {
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    width: 30px !important;
+    height: 30px !important;
+}
+.nav.user-nav .dropdown-menu {
+    width: 140px;
+    background: #fff;
+    left: auto;
+    right: 0;
+}
+.dropdown-menu {
+	-webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    border: none;
+    margin:0;
+}
+.open > .dropdown-menu {
+    display: block;
+}
+.dropdown-menu > li > a {
+    -webkit-transition: all .2s ease;
+    -moz-transition: all .2s ease;
+    -o-transition: all .2s ease;
+    transition: all .2s ease;
+}
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+    color: #fff;
+    text-decoration: none;
+    background-color: #f39c12;
+}

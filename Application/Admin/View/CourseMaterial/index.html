@@ -3,7 +3,7 @@
 <block name="content">
   <!-- content-header start -->
   <section class="content-header">
-    <h1>《{$course.title}》文件管理<small></small>
+    <h1><notempty name="course">《{$course.title}》</notempty>课程资料管理<small></small>
     </h1>
     <ol class="breadcrumb">
       <li><a href="{:U('Admin/Index/index')}"><i class="fa fa-home"></i> 后台首页</a></li>

@@ -11,7 +11,7 @@ define(function(require, exports, module){
 
 	var check = []
 
-	$('#checkall').click(function(){
+	$('.checkall').click(function(){
 		var checked = this.checked
 
 		$checkbox.each(function(){

@@ -27,5 +27,16 @@ define(function(require, exports, module) {
 	}
 
 	window.app.load = exports.load;
+  $("li.nav-hover").mouseenter(function(event) {
+    $(this).addClass("open");
+  }).mouseleave(function(event) {
+    $(this).removeClass("open");
+  });
+
+	$(".search").focus(function () {
+    $(this).prop("placeholder", "").addClass("active");
+  }).blur(function () {
+    $(this).prop("placeholder", "搜索").removeClass("active");
+  });
 
 });

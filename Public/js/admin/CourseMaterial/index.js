@@ -37,14 +37,12 @@ define(function(require, exports, module){
 				data: {
 					check_ids: checkIds
 				},
-				success: function(data){
-					if (data.success) {
+				success: function(response){
+					if (response.success) {
 						// 提示删除成功
-						Notify.success(data.message)
+						Notify.success(response.message)
 						// 刷新页面
-						setTimeout(function(){
-							window.location.reload()
-						}, 3000)
+						window.location.reload()
 
 					} else {
 						// 提示删除失败
@@ -81,13 +79,11 @@ define(function(require, exports, module){
 				data: {
 					check_ids: checkIds
 				},
-				success: function(data){
-					if (data.success) {
-						Notify.danger(response.message)
-
+				success: function(response){
+					if (response.success) {
+						Notify.success(response.message)
 						// 刷新页面
 						window.location.reload();
-
 					} else {
 						Notify.danger(response.message)
 					}
