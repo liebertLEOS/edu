@@ -1,4 +1,5 @@
 define(function(require, exports, module) {
+    var $ = require('jquery-3.3.1');
 
     var showMessage = function(type, message, duration) {
         var $exist = $('.bootstrap-notify-bar');
