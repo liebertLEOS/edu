@@ -9,7 +9,7 @@
       </div>
       <div class="panel-body">
         <form id="register-form" action="{:U('/Admin/Register/register')}" method="post">
-          <input type="hidden" name="return_url" value="{$returnUrl}">
+          <input type="hidden" name="goto" value="{$goto}">
 
           <div class="form-group">
           	<label class="control-label" for="form_username">用户名：</label>
@@ -50,6 +50,6 @@
 
 <block name="script">
   <script type="text/javascript">
-    seajs.use('/Public/js/register.js')
+    seajs.use('/Public/js/Admin/Register/register.js')
   </script>
 </block>

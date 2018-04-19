@@ -9,7 +9,7 @@
       </div>
       <div class="panel-body">
         <form id="login-form" action="{:U('/Admin/Login/login')}" method="post">
-          <input type="hidden" name="return_url" value="{$returnUrl}">
+          <input type="hidden" name="goto" value="{$goto}">
           <div class="form-group mb20">
             <label class="control-label" for="form_username">用户名：</label>
             <div class="controls">
@@ -34,7 +34,7 @@
             </div>
           </div>
           <div class="form-group mb20">
-            <button id="submit" class="btn btn-block btn-success">登录</button>
+            <button id="submit" class="btn btn-block btn-success" data-loading-text="验证中...">登录</button>
             <div class="help-block msg"></div>
           </div>
         </form>
@@ -51,6 +51,6 @@
           app.httpHost = 'http://localhost/'
       window.app = app
       
-    seajs.use('/Public/js/login.js')
+    seajs.use('/Public/js/Admin/Login/login.js')
   </script>
 </block>

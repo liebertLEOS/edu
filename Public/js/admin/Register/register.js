@@ -20,7 +20,7 @@ define(function(require, exports, module) {
           $.post($form.attr('action'), $form.serialize(), function(response){
             if (response.success) {
               Notify.success(response.message)
-              window.location = response.url
+              window.location = response.goto
             } else {
               $('#submit').button('reset')
               Notify.danger(response.message)

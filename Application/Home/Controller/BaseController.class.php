@@ -5,7 +5,7 @@
  *    功　　能：前台首页基类控制器
  *
  *    作　　者：李康
- *    完成时间：2018/04/18
+ *    完成时间：2018/04/19 15:00
  *    修　　改：2018/04/18
  *
  */
@@ -15,10 +15,12 @@ use Think\Controller;
 class BaseController extends Controller {
 
     public  $uid = 0;
+    public  $user = array();
 
     public function __construct()
     {
         $this->uid = $this->checkLogin();
+        $this->user = $this->getCurrentUser();
 
         parent::__construct();
     }
@@ -59,13 +61,16 @@ class BaseController extends Controller {
         $userid = cookie('uid');
         $userModel = M('user');
 
-        $user = $userModel->field('id, password')->where("id='{$userid}' AND loginSessionId='{$rememberMe}'");
+        $user = $userModel->field('id,password,nickname,avatar,roles')->where("id='{$userid}' AND loginSessionId='{$rememberMe}'")->find();
 
         if ($user) {
             // 更新会话token
             $remember_me = md5($user->password.time());
             // 写入会话
-            session('uid', $user->id);
+            session('uid', $user['id']);
+            session('uname', $user['nickname']);
+            session('uavatar', $user['avatar']);
+            session('uroles', $user['roles']);
 
             // 更新客户端的cookie
             cookie('remember_me', $remember_me, 3600*24*7);
@@ -77,6 +82,20 @@ class BaseController extends Controller {
         }
 
     }
+
+    public function getCurrentUser()
+    {
+        $user = array();
+
+        if ($_SESSION['uid']) {
+            $user['id'] = $_SESSION['uid'];
+            $user['nickname'] = $_SESSION['nickname'];
+            $user['roles'] = $_SESSION['uroles'];
+            $user['avatar'] = $_SESSION['uavatar'];
+        }
+
+        return $user;
+    }   
 
 
 }

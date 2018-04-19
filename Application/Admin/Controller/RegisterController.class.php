@@ -11,8 +11,9 @@
  */
 
 namespace Admin\Controller;
+use Think\Controller;
 
-class RegisterController extends BaseController {
+class RegisterController extends Controller {
 
     /**
      * 检测用户是否登录
@@ -21,12 +22,15 @@ class RegisterController extends BaseController {
      */
     public function index()
     {
-        $uid = $this->checkLogin();
+        $goto = I('request.goto', '/Admin/Login/login');
+
+        $uid = $_SESSION['uid'];
 
         if($uid) {
             $this->error('用户已登录，请先退出！');
         }
 
+        $this->assign('goto', $goto);
         $this->display();
     }
 
@@ -85,7 +89,7 @@ class RegisterController extends BaseController {
         $username = I('post.username', '');
         $password = I('post.password', '');
         $email = I('post.email', '');
-        $returnUrl = I('post.returnUrl', '');
+        $goto = I('post.goto', '/Admin/Login/index');
 
 
         // 表单数据合法性校验
@@ -133,7 +137,7 @@ class RegisterController extends BaseController {
             $this->ajaxReturn(array(
                 'success' => true,
                 'message' => '注册成功！',
-                'url' => U('Admin/Login/index')
+                'goto' => $goto
             ));
         } else {
             $this->ajaxReturn(array(
