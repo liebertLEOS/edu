@@ -7,6 +7,8 @@
  *    作　　者：李康
  *    完成时间：2018/04/04
  *    修　　改：2018/04/04 增加了ajaxReturn，处理客户端的异步请求
+ *              2018/04/20 增加了ajax请求的未登录拦截处理
+ *                         系统自动更新会话错误修复
  *
  */
 namespace Admin\Controller;
@@ -22,7 +24,13 @@ class BaseController extends Controller {
         if($uid) {
             $this->uid = $uid;
         } else {
-            $this->redirect('Admin/Login/index');
+            if (IS_AJAX) {
+                header('HTTP/1.1 404');
+                $this->error('unlogin');
+            } else {
+                $this->redirect('Admin/Login/index');
+            }
+            
         }
 
         parent::__construct();
@@ -70,15 +78,16 @@ class BaseController extends Controller {
             // 更新会话token
             $remember_me = md5($user->password.time());
             // 写入会话
-            session('uid', $user->id);
-            session('uname', $user->nickname);
-            session('uroles', $user->roles);
+            session('uid', $user['id']);
+            session('uname', $user['nickname']);
+            session('uavatar', $user['avatar']);
+            session('uroles', $user['roles']);
 
             // 更新客户端的cookie
             cookie('remember_me', $remember_me, 3600*24*7);
 
             // 将更新后的remember_me
-            $userModel->where("id={$user->id}")->setField('loginSessionId', $remember_me);
+            $userModel->where("id={$user['id']}")->setField('loginSessionId', $remember_me);
         } else {
             return false;
         }

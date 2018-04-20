@@ -20,7 +20,11 @@ class IndexController extends BaseController {
     	$courses = D('CourseInfoView')->order('course.createdTime')->limit(8)->select();
 
     	$this->assign('courses', $courses);
-    	$this->assign('user', $this->user);
+    	$this->display();
+    }
+
+    public function about ()
+    {
     	$this->display();
     }
 }

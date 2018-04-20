@@ -1,6 +1,6 @@
 <?php
 /**
- *    Widget(Admin\Controller\BaseController.class.php)
+ *    AdminWidget(Admin\Controller\AdminWidget.class.php)
  *
  *    功　　能：后台首页Widget扩展控制器
  *

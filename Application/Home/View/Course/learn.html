@@ -1,0 +1,30 @@
+<div class="modal-dialog modal-sm">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal"><i class="fa fa-close"></i></button>
+      <h4 class="modal-title">加入学习</h4>
+    </div>
+    <div class="modal-body">
+      <p id="learn-alert" class="alert alert-danger" style="display: none;"></p>
+      <p class="alert alert-warning">加入学习可在学习列表中查看，系统将记录用户的学习情况</p>
+      <button id="submit" class="btn btn-block btn-success" data-loading-text="提交中...">确认</button>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  seajs.use('jquery', function($){
+
+    $('#submit').click(function(){
+    $('#learn-alert').hide()
+    $.post('/Home/Course/learn?course_id={$courseId}', function(res){
+        if (res.success) {
+          window.location.reload()
+        } else{
+          $('#learn-alert').html(res.message).show()
+        }
+      })
+    })
+
+  })
+  
+</script>

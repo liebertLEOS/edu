@@ -1,0 +1,49 @@
+<div class="modal-dialog modal-sm">
+  <div class="modal-content">
+    <div class="form">
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4>用户登录</h4>
+        </div>
+        <div class="panel-body">
+          <form id="login-form-ajax" action="{:U('/Admin/Login/login')}" method="post">
+            <div class="alert alert-danger" style="display:none;"></div>
+            <div class="form-group">
+              <label class="control-label" for="form_username">用户名：</label>
+              <div class="controls">
+                <input class="form-control" type="text" name="username" id="form_username">
+                <div class="help-block"></div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label" for="form_password">密码：</label>
+              <div class="controls">
+                <input class="form-control" type="password" name="password" id="form_password">
+                <div class="help-block"></div>
+              </div>
+            </div>
+            <div class="form-group">
+              <!--<label class="control-label" for="form_password"></label>-->
+              <div class="controls checkbox">
+                <label>
+                  <input type="checkbox" name="remember_me"> 记住登录 <small>(默认记住登录7天)</small>
+                </label>
+                <!--<div class="help-block"></div>-->
+              </div>
+            </div>
+            <div class="form-group">
+              <button id="submit" class="btn btn-block btn-success" data-loading-text="验证中...">登录</button>
+              <div class="help-block msg"></div>
+            </div>
+          </form>
+        </div>
+      </div>
+   
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  app.load('/Public/js/Admin/Login/ajax.js')
+</script>

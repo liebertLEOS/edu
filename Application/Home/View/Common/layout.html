@@ -13,53 +13,28 @@
 </head>
 <body>
   <block name="header">
-    <header>
-      <nav class="navbar navbar-default">
-        <div class="container">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
-              <span class="sr-only"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/"></a>
-          </div>
-          <div class="collapse navbar-collapse" id="navbar-collapse">
-            <ul class="nav navbar-nav">
-              <li><a href="/Home/Course">课程</a></li>
-              <li><a href="/Home/CourseTopic">帖子</a></li>
-              <li><a href="/Home/About">我们</a></li>
-            </ul>
-            <ul class="nav user-nav">
-              <empty name="user">
-              <li class="hidden-xs"><a href="/Admin/Login/index?goto=__ACTION__">登录</a></li>
-              <li class="hidden-xs"><a href="/Admin/Register/index?goto=__ACTION__">注册</a></li>
-              <else />
-              <li class="user-avatar-li nav-hover">
-                <a class="dropdown-toggle" data-toggle="dropdown">
-                  <img class="avatar-xs" src="{$user['avatar']}">
-                </a>
-                <ul class="dropdown-menu" role="menu">
-                  <li><a href="/user/13"><i class="fa fa-home"></i> 个人中心</a></li>
-                  <li><a href="/Admin/Index/index"><i class="fa fa-dashboard"></i> 管理后台</a></li>
-                  <li><a href="/Admin/Login/logout?goto=__ACTION__"><i class="fa fa-power-off"></i> 退出登录</a></li>
-                </ul>
-              </li>
-              </empty>
-            </ul>
-            <form class="navbar-form navbar-right hidden-xs hidden-sm" action="/search" method="get">
-              <div class="form-group">
-                <input class="form-control search" name="q" placeholder="搜索">
-                <button class="button es-icon fa fa-search"></button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </nav>
-    </header>
+  {:W('Home/header', array())}
   </block>
   <block name="content"></block>
+
+  <block name="sidebar">
+  {:W('Home/sidebar', array())}
+  </block>
+
+  <block name="footer">
+  <footer class="footer">
+    <div class="footer-link"></div>
+    <div class="copyright">
+      <div class="container">Powered by <a href="http://www.zero.com/" target="_blank">ZERO v1.1.0</a>©2014-2015
+      </div>
+    </div>
+  </footer>
+  </block>
+
+  <block name="modal">
+  <div id="modal" class="modal"></div>
+  <div id="login-modal" class="modal" data-url="/Admin/Login/ajax"></div>
+  </block>
 
   <script type="text/javascript">
     var app = {}

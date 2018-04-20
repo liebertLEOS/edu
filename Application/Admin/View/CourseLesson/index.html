@@ -37,7 +37,7 @@
             <li class="item item-{$item.itemType} clearfix" id="{$key}">
               <div class="item-content">
                 <i class="fa fa-file-photo-o text-success"></i>
-                第 <span class="number">{$item.number}</span><eq name="item.type" value="chapter">章<else/>节</eq>：{$item.title}
+                第 <span class="number">{$item.number}</span>课时：{$item.title}
                 <neq name="item['status']" value="published"><span class="text-warning">（未发布）</span></neq>
               </div>
               <div class="item-tools">

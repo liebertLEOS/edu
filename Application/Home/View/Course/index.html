@@ -2,4 +2,47 @@
 
 
 <block name="content">
+  <section class="section-course-list">
+    <div class="container">
+      <div class="course-list">
+        <div class="row">
+
+        <volist name="data" id="course">
+          <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="course-item">
+              <div class="course-img">
+                <a href="/Home/Course/intro?course_id={$course.id}" target="_blank">
+                  <img src="__PUBLIC__/images/course1.jpg" alt="网校基本设置" class="img-responsive">
+                </a>
+              </div>
+              <div class="course-info">
+                <div class="title">
+                  <a class="link-dark" href="/course/4" target="_blank">{$course.title}</a>
+                </div>
+                <div class="metas clearfix">
+                  <span class="num"><i class="fa fa-user"></i>{$course.studentnum}</span>
+                  <span class="comment"><i class="fa fa-comment"></i>{$course.postnum}</span>
+                  <span class="views"><i class="fa fa-eye"></i>{$course.hitnum}</span>
+              <!--     <span class="course-price-widget">
+                    <span class="price">
+                      <span class="text-warnning">免费</span>
+                    </span>
+                  </span> -->
+                </div>
+              </div>
+            </div>
+          </div>
+          </volist>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+  	<div class="container text-center">
+  		{$page}
+  	</div>
+  </section>
+
 </block>

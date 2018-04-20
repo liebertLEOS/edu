@@ -6,7 +6,8 @@
  *
  *    作　　者：李康
  *    完成时间：2018/04/19 15:00
- *    修　　改：2018/04/18
+ *    修　　改：2018/04/19
+ *              2018/04/20 添加了ajaxLogin处理
  *
  */
 namespace Home\Controller;
@@ -33,10 +34,8 @@ class BaseController extends Controller {
     public function checkLogin()
     {
         // 获取服务器端的uid
-        $uid = $_SESSION['uid'];
-
-        if ($uid) {
-            return $uid;
+        if (isset($_SESSION['uid'])) {
+            return $_SESSION['uid'];
         }
 
 
@@ -76,7 +75,7 @@ class BaseController extends Controller {
             cookie('remember_me', $remember_me, 3600*24*7);
 
             // 将更新后的remember_me
-            $userModel->where("id={$user->id}")->setField('loginSessionId', $remember_me);
+            $userModel->where("id={$user['id']}")->setField('loginSessionId', $remember_me);
         } else {
             return false;
         }
@@ -87,15 +86,41 @@ class BaseController extends Controller {
     {
         $user = array();
 
-        if ($_SESSION['uid']) {
+        if (isset($_SESSION['uid'])) {
             $user['id'] = $_SESSION['uid'];
-            $user['nickname'] = $_SESSION['nickname'];
+            $user['nickname'] = $_SESSION['uname'];
             $user['roles'] = $_SESSION['uroles'];
             $user['avatar'] = $_SESSION['uavatar'];
         }
 
         return $user;
     }   
+
+
+    public function getSetting()
+    {
+        
+    }
+
+    public function ajaxLogin()
+    {
+        $uid = $this->checkLogin();
+        if(!$uid) {
+            header('HTTP/1.1 404');
+            $this->error('unlogin'); 
+        }
+    }
+
+    /**
+     *  检测用户角色
+     */
+    public function isGrant($role)
+    {
+        if ($this->user) {
+            $roleArray = explode('|', $this->user['roles']);
+            return array_intersect(array($role), $roleArray) ? true : false;
+        }
+    }
 
 
 }

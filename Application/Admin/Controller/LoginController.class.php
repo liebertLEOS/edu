@@ -37,6 +37,10 @@ class LoginController extends Controller {
         }
     }
 
+    public function ajax(){
+        $this->display();
+    }
+
     public function login()
     {
         $username = I('post.username', '');

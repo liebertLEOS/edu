@@ -1,0 +1,49 @@
+<extend name="Common:layout"/>
+
+<block name="header"></block>
+
+
+<block name="content">
+  <div class="course-learn">
+    <div class="course-learn-dashboard">
+      <div class="dashboard-content">
+        <a class="btn btn-warning back" href="#"><span class="fa fa-chevron-left"></span> 返回课程</a>
+        <div class="dashboard-head">
+          <span class="lesson-title">课时{$lesson.number}：{$lesson.title}</span>
+        </div>
+        <div class="dashboard-body">
+          <eq name="lesson.type" value="media">
+          </eq>
+          <eq name="lesson.type" value="text">
+          <div class="lesson-content lesson-content-text" id="lesson-text-content">
+            <div class="content"></div>
+          </div>
+          </eq>
+        </div>
+        <div class="dashboard-foot clearfix">
+          <div class="pull-right">
+            <button class="btn btn-warning" data-role="finish-lesson" style=""><span class="fa fa-square-o"></span> 学过了</button>
+          </div>
+        </div>
+      </div>
+      <div class="toolbar" id="dashboard-toolbar">
+        <ul class="toolbar-nav">
+          <li><a href=""><i class="fa fa-list"></i>目录</a></li>
+          <li><a href=""><i class="fa fa-cloud-download"></i>资料</a></li>
+          <li><a href=""><i class="fa fa-question-circle"></i>问答</a></li>
+        </ul>
+        <ul class="toolbar-content"></ul>
+      </div>
+    </div>
+  </div>
+</block>
+
+ <block name="footer"></block>
+
+ <block name="script">
+  <script type="text/javascript">
+    var lesson = {};
+    lesson.id = '{$lesson.id}';
+    seajs.use('/Public/js/Home/CourseLesson/learn.js')
+  </script>
+</block>

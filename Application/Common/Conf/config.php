@@ -1,6 +1,6 @@
 <?php
 return array(
-	'SHOW_PAGE_TRACE'       =>  true,    // 显示错误信息
+	'SHOW_PAGE_TRACE'       =>  false,    // 显示错误信息
 	//'配置项'=>'配置值'
     'DEFAULT_AVATAR' => '/Public/images/user-avatar.png',
     'UPLOAD_DIR' => './Uploads/',// 文件上传目录

@@ -3,11 +3,6 @@ define(function(require, exports, module) {
 	var $ = require('jquery-3.3.1')
 	require('bootstrap')
 	require('modal.hack2')
-	require('tree')
-	require('layout')
-	require('pushmenu')
-
-	$('[data-toggle="push-menu"]').pushMenu()
 
 	exports.load = function(name) {
 
@@ -27,6 +22,7 @@ define(function(require, exports, module) {
 	}
 
 	window.app.load = exports.load;
+
   $("li.nav-hover").mouseenter(function(event) {
     $(this).addClass("open");
   }).mouseleave(function(event) {
@@ -38,5 +34,23 @@ define(function(require, exports, module) {
   }).blur(function () {
     $(this).prop("placeholder", "搜索").removeClass("active");
   });
+
+  // 页面的全部ajaxError处理
+  $(document).ajaxError(function(event, jqxhr, settings, exception) {
+    var json = jQuery.parseJSON(jqxhr.responseText)
+      info = json.info
+      if (!info) {
+        return 
+      }
+
+      if (info == 'unlogin') {
+        $('.modal').modal('hide')
+
+        $("#login-modal").modal('show')
+        $.get($('#login-modal').data('url'), function(html){
+          $("#login-modal").html(html)
+        })
+      }
+  })
 
 });

@@ -1,0 +1,30 @@
+<extend name="Common:layout"/>
+
+
+<block name="content">
+  <section class="section-course-list">
+    <div class="container">
+      <div class="course-list">
+        <div class="row">
+
+        <volist name="data" id="topic">
+          <div class="col-lg-3 col-md-4 col-sm-6">
+            <div>{$topic.title}</div>
+          </div>
+          </volist>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <section>
+      <div class="container text-center">
+        {$page}
+      </div>
+    </section>
+</block>
+
+<block name="script">
+  
+</block>
