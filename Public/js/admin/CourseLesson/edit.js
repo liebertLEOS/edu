@@ -16,6 +16,7 @@ define(function(require, exports, module) {
   }
 
   exports.run = function () {
+    var $content = $('input[name="content"]');
     var $form = $("#course-lesson-form");
     var Validator = require('bootstrap.validator')
     var validator = new Validator({
@@ -49,37 +50,7 @@ define(function(require, exports, module) {
       element: '[name="title"]', 
       required: true,
       display: '标题'
-    })
-
-    function getTmpContents(){
-        var date = new Date(); //日期对象
-        var now = "";
-        now = now + date.getHours()+"时";
-        now = now + date.getMinutes()+"分";
-        now = now + date.getSeconds()+"秒";
-        tmpContents["title"] = $("#lesson-title-field").val();
-        tmpContents["summary"] = $("#lesson-summary-field").val();
-        tmpContents["courseId"]  = $("#course-lesson-form").data("courseId");
-        tmpContents["lessonId"]  = $("#course-lesson-form").data("lessonId");
-        tmpContents["content"] = getEditorContent(editor);
-        tmpContents["createdTime"] = now;
-
-
-        var lessonId = 0;
-        if(compare(tmpContents, localContent)){
-            var titleName = "添加课时";
-            if(tmpContents["lessonId"] != undefined){
-                titleName = "编辑课时";
-                lessonId = tmpContents["lessonId"];
-            }
-            $.post($form.data("createDraftUrl"), tmpContents, function(data){
-                localContent = objClone(tmpContents);
-                $(".modal-title").text(titleName + '(草稿已于' + tmpContents['createdTime'] + '保存)');
-            });
-        }
-    }
-
-
+    });
 
     var $form = $("#course-lesson-form")
 
@@ -88,10 +59,6 @@ define(function(require, exports, module) {
 
         $form.removeClass('lesson-form-video').removeClass("lesson-form-text")
         $form.addClass("lesson-form-" + type);
-
-        // $(".modal").on('hidden.bs.modal', function (){
-        //     clearInterval(Timer);
-        // });
     });
 
     $form.find('[name="type"]:checked').trigger('change');

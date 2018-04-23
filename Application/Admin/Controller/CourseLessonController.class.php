@@ -57,6 +57,7 @@ class CourseLessonController extends BaseController {
             $type = I('post.type', 'text');
             $mediaId = I('post.media_id', 0);
             $mediaUri = I('post.media_uri', '');
+            $mediaName = I('post.media_name', '');
 
             if ('' == $title) {
                 $this->ajaxReturn(array(
@@ -81,6 +82,7 @@ class CourseLessonController extends BaseController {
                 'media' => array(),
                 'mediaId' => $mediaId,
                 'mediaUri' => $mediaUri,
+                'mediaName' => $mediaName,
                 'length' => 0,
                 'startTime' => 0,
                 'giveCredit' => 0,
@@ -315,8 +317,9 @@ class CourseLessonController extends BaseController {
     public function editLesson()
     {
         $lessonId   = I('request.lesson_id', 0);
-        
-        if ($lessonId == 0){
+        $courseId   = I('request.course_id', 0);
+
+        if ($lessonId <= 0 || $courseId <= 0){
             $this->error('参数不完整');
         }
 
@@ -335,6 +338,7 @@ class CourseLessonController extends BaseController {
             $free = I('post.free', 0);
             $mediaId = I('post.media_id', 0);
             $mediaUri = I('post.media_uri', '');
+            $mediaName = I('post.media_name', '');
 
             if ('' == $title || '' == $lessonId) {
                 $this->ajaxReturn(array(
@@ -352,6 +356,7 @@ class CourseLessonController extends BaseController {
                 'content' => $content,
                 'mediaId' => $mediaId,
                 'mediaUri' => $mediaUri,
+                'mediaName' => $mediaName
             );
 
             $id = M('courseLesson')->save($lesson);
@@ -365,9 +370,56 @@ class CourseLessonController extends BaseController {
         // 查询课程信息
         $lesson = M('CourseLesson')->where("id={$lessonId}")->find();
         
-        $materialList = D('CourseMaterialView')->where("courseId={$lesson['courseid']} AND ext IN('mp4','avi')")->limit(100)->select();
+        $materialList = D('CourseMaterialView')->where("courseId={$courseId} AND ext IN('mp4','avi')")->limit(100)->select();
         
         $this->assign('lesson', $lesson);
+        $this->assign('materialList', $materialList);
+
+        $this->display();
+    }
+
+    // 添加课时资料
+    public function addMaterial()
+    {
+        $lessonId   = I('request.lesson_id', 0);
+        $courseId   = I('request.course_id', 0);
+
+        if ($lessonId <= 0 || $courseId <= 0){
+            $this->error('参数不完整');
+        }
+        
+        if (IS_POST) {
+            $checkIds = I('post.check_ids');
+
+            $materialList = M('CourseMaterial')->field('id')->where("courseId={$courseId} AND lessonId={$lessonId}")->select();
+
+            foreach ($materialList as $material) {
+                if (!in_array($material['id'], $checkIds) ){
+                    M('CourseMaterial')->save(array(
+                        'id' => $material['id'],
+                        'lessonId' => 0
+                    ));
+                }
+            }
+
+            foreach ($checkIds as $value) {
+               M('CourseMaterial')->save(array(
+                    'id' => $value,
+                    'lessonId' => $lessonId
+                )); 
+            }
+
+            $this->ajaxReturn(array(
+                'success' => true,
+                'message' => '更新成功!'
+            ));
+        }
+
+        //         
+        $materialList = M('CourseMaterial')->where("courseId={$courseId} AND lessonId IN(0,{$lessonId})")->select();
+        
+        $this->assign('lessonId', $lessonId);
+        $this->assign('courseId', $courseId);
         $this->assign('materialList', $materialList);
 
         $this->display();
