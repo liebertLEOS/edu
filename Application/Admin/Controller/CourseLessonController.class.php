@@ -363,7 +363,7 @@ class CourseLessonController extends BaseController {
         }
 
         // 查询课程信息
-        $lesson = D('CourseLessonMaterialView')->where("course_lesson.id={$lessonId}")->find();
+        $lesson = M('CourseLesson')->where("id={$lessonId}")->find();
         
         $materialList = D('CourseMaterialView')->where("courseId={$lesson['courseid']} AND ext IN('mp4','avi')")->limit(100)->select();
         

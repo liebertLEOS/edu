@@ -108,24 +108,28 @@ class FileController extends BaseController {
             if (IS_AJAX) {
                 $this->ajaxReturn(array(
                     'type' => 0,
+                    'success' => true,
                     'file'  => array(
                         'userId' => $this->uid,
                         'id'     => $data,
                         'uri'    => $info['savepath'].$info['savename'],
                         'mime'   => $info['type'],
                         'ext'    => $info['ext'],
+                        'name'   => $info['name'],
                         'createdTime' => $createdTime
                     )
                 ));
             } else {
                 return array(
                     'type' => 0,
+                    'success' => true,
                     'file'  => array(
                         'userId' => $this->uid,
                         'key'    => $data,
                         'uri'    => $info['savepath'].$info['savename'],
                         'mime'   => $info['type'],
                         'ext'    => $info['ext'],
+                        'name'   => $info['name'],
                         'createdTime' => $createdTime
                     )
                 );
@@ -138,7 +142,7 @@ class FileController extends BaseController {
                 ));
             } else {
                 return array(
-                    'error' => 2,
+                    'type' => 2,
                     'message' => '保存数据库失败'
                 );
             }
@@ -207,10 +211,10 @@ class FileController extends BaseController {
             if (IS_AJAX) {
                 $this->ajaxReturn(array(
                     'type' => 0,
+                    'success' => true,
                     'file'  => array(
                         'userId' => $this->uid,
                         'id'     => $data,
-                        'name'   => $info['name'],
                         'name'   => $info['name'],
                         'uri'    => $info['savepath'].$info['savename'],
                         'mime'   => $info['type'],
@@ -221,9 +225,11 @@ class FileController extends BaseController {
             } else {
                 return array(
                     'type' => 0,
+                    'success' => true,
                     'file'  => array(
                         'userId' => $this->uid,
                         'key'    => $data,
+                        'name'   => $info['name'],
                         'uri'    => $info['savepath'].$info['savename'],
                         'mime'   => $info['type'],
                         'ext'    => $info['ext'],

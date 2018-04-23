@@ -128,13 +128,14 @@ define(function(require, exports, module) {
       onUploadSuccess: function (id, data) {
         $progress.hide();
 
-        $message.text('上传成功！').fadeIn();
-        setTimeout(function(){
-          $message.text('').fadeOut();
-        }, 2000);
-
         if (data.success) {
+          $message.text('上传成功！').fadeIn();
+          setTimeout(function(){
+            $message.text('').fadeOut();
+          }, 2000);
+
           $('#media-name').text(data.file.name);
+          $('input[name="media_name"]').val(data.file.name);
           $('input[name="media_id"]').val(data.file.id);
           $('input[name="media_uri"]').val(data.file.uri);
         }
@@ -155,6 +156,7 @@ define(function(require, exports, module) {
       $('#file-browser .item').removeClass('alert-danger');
       $this.addClass('alert-danger');
       $('#media-name').text($this.data('file-title'));
+      $('input[name="media_name"]').val($this.data('file-title'));
       $('input[name="media_id"]').val($this.data('file-id'));
       $('input[name="media_uri"]').val($this.data('file-uri'));
     });
