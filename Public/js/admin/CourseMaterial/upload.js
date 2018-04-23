@@ -1,5 +1,5 @@
 define(function(require, exports, module) {
-
+  var $ = require('jquery');
   var Notify = require('common/bootstrap-notify');
   var Widget = require('widget');
   require('plupload-queue-css');
