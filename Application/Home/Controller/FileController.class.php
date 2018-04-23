@@ -6,7 +6,7 @@
  *
  *    作　　者：李康
  *    完成时间：2018/04/22 21:52
- *    修　　改：2018/04/22
+ *    修　　改：2018/04/22 20:46 文件下载错误修复
  *              
  *
  */
@@ -31,6 +31,7 @@ class FileController extends BaseController {
 
             if ($file) {
                 $response = $this->createPrivateFileDownloadResponse($file);
+                $response->prepare(null);
                 $response->send();
                 exit();
             }

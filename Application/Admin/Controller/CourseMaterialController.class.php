@@ -191,7 +191,7 @@ class CourseMaterialController extends BaseController {
         $num1 = M('CourseMaterial')->where("id in({$ids})")->delete();
         $num2 = empty($fileIds) ? true : M('file')->where("id in({$fileIds})")->delete();
 
-        if ($num1 && $num2) {
+        if ($num1) {
             $model->commit();
             $this->ajaxReturn(array(
                 'success' => true,
