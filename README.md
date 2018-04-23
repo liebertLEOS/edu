@@ -24,6 +24,10 @@ Apache/2.4.23 + PHP/5.4.45 + MySQL/5.5.53
 *  jquery-ui
 *  jquery-plupload-queue
 *  ckeditor
+*  video-js
+*  jquery-perfect-scrollbar
+*  jquery-sortable
+*  bootstrap-fileinput
 
 ## 后端组件
 *  ThinkPHP
