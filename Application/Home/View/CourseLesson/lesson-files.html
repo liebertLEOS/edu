@@ -1,0 +1,9 @@
+<empty name="files">
+   <h5 class="alert alert-warning">暂无课程资料</h5>
+<else />
+  <ul>
+    <volist name="files" id="file">
+      <li><a href="/Home/File/download/id/{$file.fileid}" target="_blank">{$i}.{$file.title}</a><small> [{$file.title|format_bytes}]</small></li>
+    </volist>
+  </ul>
+</empty>

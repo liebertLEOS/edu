@@ -42,6 +42,8 @@ seajs.config({
     "plupload-queue-zh-cn": "plupload-queue/2.0.0/i18n/zh-cn",
     "perfect-scrollbar"   : "jquery-perfect-scrollbar/0.4.8/perfect-scrollbar",
     "perfect-scrollbar-css"   : "jquery-perfect-scrollbar/0.4.8/perfect-scrollbar.css",
+    'video-js'            : 'video-js/4.2.1/video-js',
+    'video-js-css'        : 'video-js/4.2.1/video-js.css',
   },
   // 变量配置
   vars: {

@@ -1,0 +1,34 @@
+<div class="question-list-pane">
+  <div data-role="list-pane" >
+    <form id="lesson-question-form" method="post" action="/CourseLesson/addQuestion">
+
+      <div class="form-group">
+        <div class="controls">
+          <input type="text" id="question_title" name="question[title]" required="required" class="form-control expand-form-trigger" placeholder="我要提问" data-display="标题" />
+        </div>
+      </div>
+
+      <div class="form-group detail-form-group">
+        <div class="controls">
+          <textarea id="question_content" name="question[content]" required="required" class="form-control" rows="5" placeholder="详细描述你的问题" data-image-upload-url=""></textarea>
+        </div>
+      </div>
+
+      <div class="form-group detail-form-group">
+        <div class="controls clearfix">
+          <button class="btn btn-warning btn-sm pull-right" type="submit">提问</button>
+          <button class="btn btn-link btn-sm pull-right" type="button">取消</button>
+        </div>
+      </div>
+
+      <input type="hidden" id="question_courseId" name="question[courseId]" />
+      <input type="hidden" id="question_lessonId" name="question[lessonId]" />
+    </form>
+
+    <ul class="media-list thread-list-small" data-role="list">
+      <li class="text-center">此课时还没有问题</li>
+    </ul>
+
+  </div>
+
+</div>

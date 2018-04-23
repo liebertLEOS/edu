@@ -53,8 +53,10 @@ class CourseLessonController extends BaseController {
         if (IS_POST) {
             $title = I('post.title');
             $summary = I('post.summary', '');
-            $content = I('post.content', '');
+            $content = $_POST['content'];
             $type = I('post.type', 'text');
+            $mediaId = I('post.media_id', 0);
+            $mediaUri = I('post.media_uri', '');
 
             if ('' == $title) {
                 $this->ajaxReturn(array(
@@ -77,7 +79,8 @@ class CourseLessonController extends BaseController {
                 'type' => $type,
                 'content' => $content,
                 'media' => array(),
-                'mediaId' => 0,
+                'mediaId' => $mediaId,
+                'mediaUri' => $mediaUri,
                 'length' => 0,
                 'startTime' => 0,
                 'giveCredit' => 0,
@@ -327,10 +330,11 @@ class CourseLessonController extends BaseController {
 
             $title = I('post.title');
             $summary = I('post.summary', '');
-            $content = I('post.content', '');
+            $content = $_POST['content'];
             $type = I('post.type', 'text');
             $free = I('post.free', 0);
             $mediaId = I('post.media_id', 0);
+            $mediaUri = I('post.media_uri', '');
 
             if ('' == $title || '' == $lessonId) {
                 $this->ajaxReturn(array(
@@ -347,6 +351,7 @@ class CourseLessonController extends BaseController {
                 'type' => $type,
                 'content' => $content,
                 'mediaId' => $mediaId,
+                'mediaUri' => $mediaUri,
             );
 
             $id = M('courseLesson')->save($lesson);

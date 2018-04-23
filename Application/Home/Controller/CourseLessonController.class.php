@@ -29,13 +29,17 @@ class CourseLessonController extends BaseController
         if ($lessonId <=0 ) {
             $this->error('课时ID不合法');
         }
-        $lesson = M('CourseLesson')->field('id,title,type,number')->where("id={$lessonId}")->find();
 
-        if (!$lesson) {
-            $this->error('课时不存在');
-        }
+        $lesson = M('CourseLesson')->field('id,courseId,title,type,number,content,mediaUri')->where("id={$lessonId}")->find();
+        $lesson['mediauri'] = '/'.C('UPLOAD_DIR').$lesson['mediauri'];
+        // 获取课程话题
+        $topic = M('CourseTopic')->where("lessonId={$lessonId}")->select();
+        // 获取课程资料
+        $files = D('CourseMaterialInfoView')->where("lessonId={$lessonId}")->select();
 
         $this->assign('lesson', $lesson);
+        $this->assign('topic', $topic);
+        $this->assign('files', $files);
     	$this->display();
     }
 
@@ -47,21 +51,26 @@ class CourseLessonController extends BaseController
 
     }
 
-    public function ajaxGetContent()
+    public function playVideo()
     {
         $lessonId = I('request.lesson_id', 0);
 
-        if ($lessonId <=0 ) {
+        if ($lessonId <= 0 ) {
             $this->error('课时ID不合法');
         }
-        $lesson = M('CourseLesson')->field('type,content')->where("id={$lessonId}")->find();
 
-        if (!$lesson) {
-            $this->error('课时不存在');
+        $lesson = M('CourseLesson')->field('id,title,type,mediaUri')->where("id={$lessonId}")->find();
+        
+        $file = array();
+
+        if ($lesson) {
+            $file['url'] = '/'.C('UPLOAD_DIR').$lesson['mediauri'];
+            $file['type'] = $lesson['type'];
         }
-        $this->ajaxReturn(array(
-            'type' => $lesson['type'],
-            'content' => $lesson['content']
-        ));
+        
+        $this->assign('file', $file);
+        $this->assign('user', $this->user);
+        $this->display('Play/play-video');
     }
+
 }

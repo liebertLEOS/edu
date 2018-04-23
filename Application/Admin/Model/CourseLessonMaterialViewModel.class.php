@@ -23,6 +23,7 @@ class CourseLessonMaterialViewModel extends ViewModel
             'summary',
             'type',
             'content',
+            'mediaUri',
             'status',
             'mediaId',
             'free',

@@ -13,8 +13,8 @@
           <label class="col-sm-2 control-label">类型</label>
           <div class="col-sm-7 controls">
             <div class="radio">
-              <label><input type="radio" name="type" value="video" checked="checked"> 视频</label>
-              <label><input type="radio" name="type" value="text"> 图文</label>
+              <label><input type="radio" name="type" value="video" <eq name="lesson.type" value="video">checked="checked"</eq> > 视频</label>
+              <label><input type="radio" name="type" value="text" <eq name="lesson.type" value="text">checked="checked"</eq> > 图文</label>
             </div>
             <div class="help-block"></div>
           </div>
@@ -105,7 +105,7 @@
                           <div class="empty">暂无视频文件，请先上传。</div>
                         <else />
                           <volist name="materialList" id="material">
-                            <div class="item" data-file-id="{$material.fileid}" data-file-title="{$material.title}">{$material.title}</div>
+                            <div class="item" data-file-id="{$material.fileid}" data-file-uri="{$material.uri}"  data-file-title="{$material.title}">{$material.title}</div>
                           </volist>
                         </empty>
                       </div>
@@ -117,6 +117,7 @@
 
               </div>
               <input name="media_id" type="hidden" value="{$lesson.mediaid}"/>
+              <input name="media_uri" type="hidden" value="{$lesson.mediauri}"/>
               <input name="course_id" type="hidden" value="{$lesson.courseid}"/>
               <input name="lesson_id" type="hidden" value="{$lesson.id}"/>
             </div>

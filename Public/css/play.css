@@ -1,0 +1,9 @@
+.local-video-player.vjs-default-skin.vjs-has-started .vjs-control-bar {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+    -webkit-transition: visibility 0.1s, opacity 0.1s;
+    -moz-transition: visibility 0.1s, opacity 0.1s;
+    -o-transition: visibility 0.1s, opacity 0.1s;
+    transition: visibility 0.1s, opacity 0.1s;
+}

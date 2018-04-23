@@ -55,30 +55,6 @@ class CourseController extends CourseBaseController {
     	$this->display();
     }
 
-    protected function getCourseLessonItems($courseId)
-    {
-        $courseChapter = M('CourseChapter')->field('id, title, type, parentId, number, seq')->where("courseId={$courseId}")->select();
-        $courseLesson = M('CourseLesson')->field('id, title, chapterId, number, seq, status')->where("courseId={$courseId}")->select();
-
-        // 顺序编排seq
-        $items = array();
-        foreach ($courseLesson as $lesson) {
-            $lesson['itemType'] = 'lesson';
-            $items["lesson-{$lesson['id']}"] = $lesson;
-        }
-
-        foreach ($courseChapter as $chapter) {
-            $chapter['itemType'] = $chapter['type'] == 'unit' ? 'chapter-unit' : 'chapter';
-            $items["chapter-{$chapter['id']}"] = $chapter;
-        }
-
-        uasort($items, function($item1, $item2){
-            return $item1['seq'] > $item2['seq'];
-        });
-
-        return $items;
-    }
-
     /**
      *  加入学习
      */
@@ -132,5 +108,65 @@ class CourseController extends CourseBaseController {
 
         $this->assign('courseId', $courseId);
         $this->display();
+    }
+
+    public function ajaxGetLessonItems()
+    {
+        $courseId = I('get.course_id');
+
+        if ($courseId <= 0) {
+            $this->ajaxReturn(array(
+                'success' => false,
+                'message' => '课程ID参数错误！'
+            ));
+        }
+        $lessonItems = $this->getCourseLessonItems($courseId);
+
+        $this->assign('lessonItems', $lessonItems);
+        $this->ajaxReturn(array(
+            'success' => true,
+            'content' => $this->fetch('lesson-items')
+        ));
+    }
+
+
+    public function ajaxGetCourseFiles()
+    {
+        $courseId = I('get.course_id');
+
+        if ($courseId <= 0) {
+            $this->ajaxReturn(array(
+                'success' => false,
+                'message' => '课程ID参数错误！'
+            ));
+        }
+
+        $files = M('CourseMaterial')->where("courseId={$courseId}")->select();
+        
+        $this->assign('files', $files);
+        $this->ajaxReturn(array(
+            'success' => true,
+            'content' => $this->fetch('course-files')
+        ));
+    }
+
+    public function ajaxGetCourseTopic()
+    {
+        $courseId = I('get.course_id');
+
+        if ($courseId <= 0) {
+            $this->ajaxReturn(array(
+                'success' => false,
+                'message' => '课程ID参数错误！'
+            ));
+        }
+
+        $topic = M('CourseTopic')->where("courseId={$courseId}")->select();
+        
+        $this->assign('topic', $topic);
+        $this->ajaxReturn(array(
+            'success' => true,
+            'content' => $this->fetch('course-topic')
+        ));
     }
 }

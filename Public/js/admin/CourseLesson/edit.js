@@ -2,6 +2,19 @@ define(function(require, exports, module) {
   var $ = require('jquery-3.3.1')
   var Notify = require('common/bootstrap-notify')
 
+  function getEditorContent(editor){
+      editor.updateElement();
+      var z = editor.getData();
+      var x = editor.getData().match(/<embed[\s\S]*?\/>/g);
+      if (x) {
+          for (var i = x.length - 1; i >= 0; i--) {
+             var y = x[i].replace(/\/>/g,"wmode='Opaque' \/>");
+             var z =  z.replace(x[i],y);
+          };
+      }
+      return z;
+  }
+
   exports.run = function () {
     var $form = $("#course-lesson-form");
     var Validator = require('bootstrap.validator')
@@ -26,6 +39,11 @@ define(function(require, exports, module) {
           })
         }
       })
+
+    validator.on('formValidate', function(elemetn, event) {
+        var content = getEditorContent(editor);
+        $content.val(content);
+    });
 
     validator.addItem({
       element: '[name="title"]', 
@@ -96,11 +114,11 @@ define(function(require, exports, module) {
     var $message = $('.file-chooser-uploader-progress-message');
 
     $("#file-selected").dmUploader({
-      url: '/Admin/CourseMaterial/add',
+      url: '/Admin/File/add',
       extraData: {
          "course_id": $('input[name="course_id"]').val()
       },
-      extFilter: ["jpg", "jpeg", "png", "gif", "mp4"],
+      extFilter: ["mp4"],
       onBeforeUpload: function(id) {
         $progress.show();
       },
@@ -118,6 +136,7 @@ define(function(require, exports, module) {
         if (data.success) {
           $('#media-name').text(data.file.name);
           $('input[name="media_id"]').val(data.file.id);
+          $('input[name="media_uri"]').val(data.file.uri);
         }
 
       },
@@ -137,6 +156,7 @@ define(function(require, exports, module) {
       $this.addClass('alert-danger');
       $('#media-name').text($this.data('file-title'));
       $('input[name="media_id"]').val($this.data('file-id'));
+      $('input[name="media_uri"]').val($this.data('file-uri'));
     });
 
 

@@ -48,9 +48,33 @@ class CourseBaseController extends BaseController
           
      }
 
-     public function getMemberByCourseIdAndUserId($courseId, $userId)
+     protected function getMemberByCourseIdAndUserId($courseId, $userId)
      {
           $member = M('CourseMember')->where("courseId={$courseId} AND userId={$userId}")->find();
           return $member;
      }
+
+     protected function getCourseLessonItems($courseId)
+    {
+        $courseChapter = M('CourseChapter')->field('id, title, type, parentId, number, seq')->where("courseId={$courseId}")->select();
+        $courseLesson = M('CourseLesson')->field('id, title, chapterId, number, seq, status')->where("courseId={$courseId}")->select();
+
+        // 顺序编排seq
+        $items = array();
+        foreach ($courseLesson as $lesson) {
+            $lesson['itemType'] = 'lesson';
+            $items["lesson-{$lesson['id']}"] = $lesson;
+        }
+
+        foreach ($courseChapter as $chapter) {
+            $chapter['itemType'] = $chapter['type'] == 'unit' ? 'chapter-unit' : 'chapter';
+            $items["chapter-{$chapter['id']}"] = $chapter;
+        }
+
+        uasort($items, function($item1, $item2){
+            return $item1['seq'] > $item2['seq'];
+        });
+
+        return $items;
+    }
 }

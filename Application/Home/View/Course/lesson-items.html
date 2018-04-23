@@ -1,0 +1,23 @@
+<ul class="lesson-list">
+  <volist name="lessonItems" id="item">
+    <eq name="item['itemType']" value="lesson">
+    <li class="item item-{$item.itemType} clearfix" id="{$key}">
+      <a href="/Home/CourseLesson/learn?lesson_id={$item.id}">
+        <i class="fa fa-file-movie-o text-danger"></i> {$item.number}：{$item.title}
+      </a>
+    </li>
+    <else />
+    <li class="item item-{$item.itemType} clearfix" id="{$key}">
+      <div class="item-content">
+        <eq name="item.type" value="chapter">
+        <i class="fa fa-list"></i>
+        第 <span class="number">{$item.number}</span>章
+        <else />
+        第 <span class="number">{$item.number}</span>节
+        </eq>
+        ：{$item.title}
+      </div>
+    </li>
+    </eq>
+  </volist>
+</ul>
