@@ -354,9 +354,10 @@ ul.lesson-list li{
 	transition: all ease .3s;
 	cursor: pointer;
 }
-.lesson-list .item-lesson:hover{
-	background-color: #e8ddb7;
+.lesson-list .item-lesson:hover, .lesson-list .item-lesson.active{
+	background-color: #f2dede;
 }
+
 /**
  * course learn
  */
@@ -422,6 +423,10 @@ ul.lesson-list li{
     -moz-transition: background-color .2s linear,opacity .2s linear;
     transition: background-color .2s linear,opacity .2s linear;
 }
+.course-learn-dashboard .btn{
+    border-radius: 0;
+    padding: 4px 14px;
+}
 .course-learn-dashboard .dashboard-head {
     position: absolute;
     left: 130px;
@@ -458,6 +463,8 @@ ul.lesson-list li{
 }
 .course-learn-dashboard ul.toolbar-nav{
 	padding:0;
+    height: 100%;
+    margin: 0;
 }
 .course-learn-dashboard ul.toolbar-nav >li{
 	list-style: none;
@@ -519,9 +526,6 @@ ul.lesson-list li{
 }
 ul.lesson-list >li a{
 	display:block;
-}
-#toolbar-lesson-list, #toolbar-files{
-	padding: 20px 0;
 }
 #lesson-question-form {
     padding: 15px 10px 0 10px;

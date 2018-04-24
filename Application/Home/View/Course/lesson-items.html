@@ -1,10 +1,16 @@
 <ul class="lesson-list">
   <volist name="lessonItems" id="item">
     <eq name="item['itemType']" value="lesson">
-    <li class="item item-{$item.itemType} clearfix" id="{$key}">
-      <a href="/Home/CourseLesson/learn?lesson_id={$item.id}">
-        <i class="fa fa-file-movie-o text-danger"></i> {$item.number}：{$item.title}
-      </a>
+    <li class="item item-{$item.itemType} clearfix <eq name="item['id']" value="$lessonId">active</eq>" id="{$key}">
+      <eq name="item['id']" value="$lessonId">
+        <span>
+          <i class="fa fa-file-movie-o text-danger"></i> {$item.number}：{$item.title}
+        </span>
+      <else />
+        <a href="/Home/CourseLesson/learn?lesson_id={$item.id}">
+          <i class="fa fa-file-movie-o text-danger"></i> {$item.number}：{$item.title}
+        </a>
+      </eq>
     </li>
     <else />
     <li class="item item-{$item.itemType} clearfix" id="{$key}">

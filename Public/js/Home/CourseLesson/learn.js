@@ -37,7 +37,7 @@ define(function(require, exports, module) {
   }
   
   // 工具栏-课时列表
-  $.get('/Home/Course/ajaxGetLessonItems?course_id=' + lesson.courseId, function(res){
+  $.get('/Home/Course/ajaxGetLessonItems/course_id/' + lesson.courseId + '/lesson_id/' + lesson.id, function(res){
     if (res.success) {
       $("#toolbar-lesson-list").html(res.content)
       $("#toolbar-lesson-list").perfectScrollbar({wheelSpeed:50})

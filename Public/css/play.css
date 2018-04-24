@@ -7,3 +7,18 @@
     -o-transition: visibility 0.1s, opacity 0.1s;
     transition: visibility 0.1s, opacity 0.1s;
 }
+.local-video-player{
+    background-color: #000;
+    position: relative;
+    padding: 0;
+    font-size: 12px;
+    vertical-align: middle;
+    /* display: table-cell; */
+    font-weight: normal;
+    font-style: normal;
+    font-family: Arial, sans-serif;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}

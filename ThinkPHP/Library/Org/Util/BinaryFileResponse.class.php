@@ -157,7 +157,7 @@ class BinaryFileResponse extends Response
             $this->headers->set('Content-Type', $this->file->getMimeType() ?: 'application/octet-stream');
         }
 
-        if ('HTTP/1.0' != $_REQUEST['SERVER_PROTOCOL']) {
+        if ('HTTP/1.0' != $request->server->get('SERVER_PROTOCOL')) {
             $this->setProtocolVersion('1.1');
         }
 
@@ -166,30 +166,30 @@ class BinaryFileResponse extends Response
         $this->offset = 0;
         $this->maxlen = -1;
 
-        if (self::$trustXSendfileTypeHeader) {
+        if (self::$trustXSendfileTypeHeader && $request->headers->has('X-Sendfile-Type')) {
             // Use X-Sendfile, do not send any content.
-            // $type = $request->headers->get('X-Sendfile-Type');
+            $type = $request->headers->get('X-Sendfile-Type');
             $path = $this->file->getRealPath();
-            // if (strtolower($type) == 'x-accel-redirect') {
-            //     // Do X-Accel-Mapping substitutions.
-            //     foreach (explode(',', $request->headers->get('X-Accel-Mapping', ''))  as $mapping) {
-            //         $mapping = explode('=', $mapping, 2);
+            if (strtolower($type) == 'x-accel-redirect') {
+                // Do X-Accel-Mapping substitutions.
+                foreach (explode(',', $request->headers->get('X-Accel-Mapping', ''))  as $mapping) {
+                    $mapping = explode('=', $mapping, 2);
 
-            //         if (2 == count($mapping)) {
+                    if (2 == count($mapping)) {
 
-            //             //$pathPrefix = trim($mapping[0]);
-            //             //$location = trim($mapping[1]);
+                        //$pathPrefix = trim($mapping[0]);
+                        //$location = trim($mapping[1]);
 
-            //             $location = trim($mapping[0]);
-            //             $pathPrefix = trim($mapping[1]);
+                        $location = trim($mapping[0]);
+                        $pathPrefix = trim($mapping[1]);
 
-            //             if (substr($path, 0, strlen($pathPrefix)) == $pathPrefix) {
-            //                 $path = $location.substr($path, strlen($pathPrefix));
-            //                 break;
-            //             }
-            //         }
-            //     }
-            // }
+                        if (substr($path, 0, strlen($pathPrefix)) == $pathPrefix) {
+                            $path = $location.substr($path, strlen($pathPrefix));
+                            break;
+                        }
+                    }
+                }
+            }
             $this->headers->set($type, $path);
             $this->maxlen = 0;
         } elseif ($request->headers->has('Range')) {

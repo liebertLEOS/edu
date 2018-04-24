@@ -113,6 +113,7 @@ class CourseController extends CourseBaseController {
     public function ajaxGetLessonItems()
     {
         $courseId = I('get.course_id');
+        $lessonId = I('get.lesson_id');
 
         if ($courseId <= 0) {
             $this->ajaxReturn(array(
@@ -122,6 +123,7 @@ class CourseController extends CourseBaseController {
         }
         $lessonItems = $this->getCourseLessonItems($courseId);
 
+        $this->assign('lessonId', $lessonId);
         $this->assign('lessonItems', $lessonItems);
         $this->ajaxReturn(array(
             'success' => true,

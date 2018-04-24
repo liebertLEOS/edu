@@ -28,4 +28,6 @@ return array(
     'DB_SLAVE_NO'           =>  '', // 指定从服务器序号
 
     'URL_MODEL'             =>  2,
+
+    'VERSION'               => '1.0.5',
 );
