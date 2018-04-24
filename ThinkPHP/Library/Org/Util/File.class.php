@@ -3,7 +3,7 @@
 /**
  * Database.class.php
  *
- * @Description: 文件下载
+ * @Description: 文件处理类
  * @Author     : liebert
  * @Date       : 2018/04/23
  */

@@ -3,7 +3,7 @@
 /**
  * HeaderBag.class.php
  *
- * @Description: Response
+ * @Description: 报文头部参数类
  * @Author     : liebert <845301110@qq.com>
  * @Date       : 2018/04/23
  */

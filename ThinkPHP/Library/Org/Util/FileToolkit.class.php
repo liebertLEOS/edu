@@ -1,4 +1,13 @@
 <?php
+
+/**
+ * FileBag.class.php
+ *
+ * @Description: 文件校验工具类
+ * @Author     : liebert <845301110@qq.com>
+ * @Date       : 2018/04/24
+ */
+
 namespace Org\Util;
 
 class FileToolkit
