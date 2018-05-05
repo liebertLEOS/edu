@@ -57,7 +57,7 @@ class CourseBaseController extends BaseController
      protected function getCourseLessonItems($courseId)
     {
         $courseChapter = M('CourseChapter')->field('id, title, type, parentId, number, seq')->where("courseId={$courseId}")->select();
-        $courseLesson = M('CourseLesson')->field('id, title, chapterId, number, seq, status')->where("courseId={$courseId}")->select();
+        $courseLesson = M('CourseLesson')->field('id, title, type, chapterId, number, seq, status')->where("courseId={$courseId}")->select();
 
         // 顺序编排seq
         $items = array();

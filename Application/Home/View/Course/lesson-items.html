@@ -4,11 +4,11 @@
     <li class="item item-{$item.itemType} clearfix <eq name="item['id']" value="$lessonId">active</eq>" id="{$key}">
       <eq name="item['id']" value="$lessonId">
         <span>
-          <i class="fa fa-file-movie-o text-danger"></i> {$item.number}：{$item.title}
+          <i class="fa <eq name="item.type" value="video">fa-file-movie-o<else />fa-file-text-o</eq> text-danger"></i> {$item.number}：{$item.title}
         </span>
       <else />
         <a href="/Home/CourseLesson/learn?lesson_id={$item.id}">
-          <i class="fa fa-file-movie-o text-danger"></i> {$item.number}：{$item.title}
+          <i class="fa <eq name="item.type" value="video">fa-file-movie-o<else />fa-file-text-o</eq> text-danger"></i> {$item.number}：{$item.title}
         </a>
       </eq>
     </li>

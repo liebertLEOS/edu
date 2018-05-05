@@ -31,7 +31,7 @@ class FileController extends BaseController {
             $file['uri'] = C('UPLOAD_DIR').$file['uri'];
 
             if ($file) {
-                $request = new Request();
+                $request = Request::createFromGlobals();
                 $response = $this->createPrivateFileDownloadResponse($request, $file);
                 $response->prepare($request);
                 $response->send();

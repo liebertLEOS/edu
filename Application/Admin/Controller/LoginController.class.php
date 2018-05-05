@@ -88,8 +88,7 @@ class LoginController extends Controller {
         session('uroles', $user['roles']);
         session('uavatar', $user['avatar']);
         
-        cookie('uid', $user['id'], 3600*2);
-        cookie('nickname', $user['nickname'], 3600*2);
+        cookie('uid', $user['id'], 3600*24*7);
 
         // 是否记住登录
         if ($remember_me) {
